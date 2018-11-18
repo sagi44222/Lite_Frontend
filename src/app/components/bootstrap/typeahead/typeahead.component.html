@@ -1,0 +1,319 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Brand</a>
+  </div>
+  <!--/.navbar-header-->
+
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">One Column
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="#">Action</a>
+          </li>
+          <li>
+            <a href="#">Another action</a>
+          </li>
+          <li>
+            <a href="#">Something else here</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="#">Separated link</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="#">One more separated link</a>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Two Column
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu multi-column columns-2">
+          <div class="row">
+            <div class="col-sm-6">
+              <ul class="multi-column-dropdown">
+                <li>
+                  <a href="#">Action</a>
+                </li>
+                <li>
+                  <a href="#">Another action</a>
+                </li>
+                <li>
+                  <a href="#">Something else here that's extra long so we can see how it looks</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">Separated link</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">One more separated link</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-6">
+              <ul class="multi-column-dropdown">
+                <li>
+                  <a href="#">Action</a>
+                </li>
+                <li>
+                  <a href="#">Another action</a>
+                </li>
+                <li>
+                  <a href="#">Something else here</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">Separated link</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">One more separated link</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Three Column
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu multi-column columns-3">
+          <div class="row">
+            <div class="col-sm-4">
+              <ul class="multi-column-dropdown">
+                <li>
+                  <a href="#">Action</a>
+                </li>
+                <li>
+                  <a href="#">Another action</a>
+                </li>
+                <li>
+                  <a href="#">Something else here</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">Separated link</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">One more separated link</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <ul class="multi-column-dropdown">
+                <li>
+                  <a href="#">Action</a>
+                </li>
+                <li>
+                  <a href="#">Another action</a>
+                </li>
+                <li>
+                  <a href="#">Something else here</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">Separated link</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">One more separated link</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-4">
+              <ul class="multi-column-dropdown">
+                <li>
+                  <a href="#">Action</a>
+                </li>
+                <li>
+                  <a href="#">Another action</a>
+                </li>
+                <li>
+                  <a href="#">Something else here</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">Separated link</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a href="#">One more separated link</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </ul>
+      </li>
+      <li>
+        <a href="#">Link</a>
+      </li>
+    </ul>
+  </div>
+  <!--/.navbar-collapse-->
+</nav>
+<!--/.navbar-->
+
+
+
+<!--Typeahead Starts-->
+
+
+
+<section id="typeahead">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="content-header">Typeahead</div>
+    </div>
+  </div>
+  <div class="row" matchHeight="card">
+    <!--Basic Typeahead Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Simple Typeahead</h4>
+          <p> A typeahead example that gets values from a static
+            <code>string[]</code>
+          </p>
+        </div>
+        <div class="card-body">
+          <div class="card-block">
+            <ul>
+              <li>
+                <code>debounceTime</code> operator</li>
+              <li>kicks in only if 2+ characters typed</li>
+              <li>limits to 10 results</li>
+            </ul>
+            <div class="form-group">
+              <input type="text" class="form-control mb-3" [(ngModel)]="model" [ngbTypeahead]="search" placeholder="Search for alabama"
+              />
+            </div>
+            <p>Model: {{ model | json }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Basic Typeahead Ends-->
+
+    <!--Wikipedia search Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Wikipedia search</h4>
+          <p> A typeahead example that gets values from the
+            <code>WikipediaService</code>
+          </p>
+        </div>
+        <div class="card-body">
+          <div class="card-block">
+            <ul>
+              <li>remote data retrieval</li>
+              <li>
+                <code>debounceTime</code> operator</li>
+              <li>
+                <code>do</code> operator</li>
+              <li>
+                <code>distinctUntilChanged</code> operator</li>
+              <li>
+                <code>switchMap</code> operator</li>
+              <li>
+                <code>catch</code> operator to display an error message in case of connectivity issue</li>
+            </ul>
+
+            <div class="form-group" [class.has-danger]="searchFailed">
+              <input type="text" class="form-control" [(ngModel)]="modelWiki" [ngbTypeahead]="searchWiki" placeholder="Search for alabama"
+              />
+              <span *ngIf="searching">searching...</span>
+              <div class="form-control-feedback" *ngIf="searchFailed">Sorry, suggestions could not be loaded.</div>
+            </div>
+
+            <p>Model: {{ modelWiki | json }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Wikipedia search Ends-->
+  </div>
+  <div class="row" matchHeight="card">
+    <!--Formatted results Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Formatted results</h4>
+          <p>A typeahead example that uses a formatter function for string results</p>
+        </div>
+        <div class="card-body">
+          <div class="card-block">
+            <div class="form-group">
+              <input type="text" class="form-control format mb-3" [(ngModel)]="modelFormat" [ngbTypeahead]="search" [resultFormatter]="formatter"
+                placeholder="Search for alabama" />
+            </div>
+            <p>Model: {{ modelFormat | json }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Formatted results Ends-->
+
+    <!--Template for results Starts-->
+    <div class="col-md-12 col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Template for results</h4>
+          <p>A typeahead example that uses custom template for results display and uses object as a model</p>
+        </div>
+        <div class="card-body">
+          <div class="card-block">
+            <div class="row">
+              <ng-template #rt let-r="result" let-t="term">
+                <div class="col-sm-4">
+                  <ul class="multi-column-dropdown">
+                    <li>
+                      <a href="#">Action</a>
+                    </li>
+                    <li>
+                      <a href="#">Another action</a>
+                    </li>
+                    <li>
+                      <a href="#">Something else here</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                      <a href="#">Separated link</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                      <a href="#">One more separated link</a>
+                    </li>
+                  </ul>
+                </div>
+                <img [src]="'https://upload.wikimedia.org/wikipedia/commons/thumb/' + r.flag" width="16"> {{ r.name}}
+              </ng-template>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control mb-3" [(ngModel)]="modelTemp" [ngbTypeahead]="searchFlags" [resultTemplate]="rt" [inputFormatter]="formatter1"
+                placeholder="Search for alabama" />
+            </div>
+            <p>Model: {{ modelTemp | json }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Template for results Ends-->
+  </div>
+</section>
+<!--Typeahead Ends-->

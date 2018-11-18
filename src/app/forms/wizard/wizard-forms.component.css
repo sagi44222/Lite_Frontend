@@ -1,0 +1,216 @@
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width:100%;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    left: auto;
+    // top: 0px;
+    height: 350px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: 12px;
+}
+
+.dropdown-content a {
+    color: black;
+    font-style: italic;
+    padding-left: 5px;
+    padding: 0px!important;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.dropdown input:focus .dropdown-content {display: block;}
+
+.dropdown input:focus .dropbtn {background-color: #3e8e41;}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: white; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: forestgreen; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: forestgreen; 
+}
+
+:host ::ng-deep .ui-accordion .ui-accordion-content {
+    padding: 1em;
+    border-top: 0;
+    overflow: visible;
+    zoom: 1;
+    border: 1px solid #c8c8c8;
+    background-color: #ffffff;
+    color: #333333;
+    padding: 0.571em 1em;
+}
+
+:host ::ng-deep .ui-accordion .ui-accordion-header.ui-state-active {
+    /* background: #007ad9; */
+    /* border-left-color: transparent; */
+    /* border-right-color: transparent; */
+    /* border-bottom-color: transparent; */
+    border-radius: 0;
+    background-color: white!important;
+    border: 1px solid #c8c8c8;
+    color: #3e8e41!important;
+}
+
+:host ::ng-deep .ui-state-default a {
+    color: #3e8e41!important;
+}
+
+:host ::ng-deep .h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Open Sans', sans-serif!important;
+}
+
+:host ::ng-deep .body{
+    font-family: 'Open Sans', sans-serif!important;
+}
+
+:host ::ng-deep .form-control:focus{
+    border-color: #9eca45 !important;
+    box-shadow: none!important;
+}
+
+:host ::ng-deep form .form-control{
+    border: 1px solid #c5c5c5!important;
+    color: #2b4a27!important;
+    line-height: 2!important;
+  }
+
+:host ::ng-deep  select.form-control:not([size]):not([multiple]) {
+    height: calc(2.25rem + 10px);
+}
+
+.htitle {
+    margin-top: 0.1rem !important;
+    font-weight: 300;
+    color: #2b4a27;
+    line-height: 1.0em;
+}
+
+.hstitle{
+    margin-top: 1.7rem;
+    font-weight: 300;
+    color: #647163;
+    line-height: 1.7;
+}
+
+:host ::ng-deep b, strong {
+    font-weight: 600;
+}
+
+.bultext{
+    padding-top: 20px;
+    font-weight: 300;
+    line-height: 1.5em;
+    color: #647163;
+}
+
+:host ::ng-deep .fa {
+    font-weight: normal;
+    color: #6f9c40;
+}
+
+:host ::ng-deep aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.current:after {
+    background-color: orange!important;
+}
+
+:host ::ng-deep aw-wizard-navigation-bar.horizontal ul.steps-indicator{
+    margin-bottom: 1.5rem!important;
+}
+
+:host ::ng-deep aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.done:after {
+    background-color: #6f9c40;
+}
+
+::placeholder { 
+    color:#c5c5c5;
+    font-style: italic;
+    font-family: "Open Sans", sans-serif !important;
+}
+
+.termscs{
+    line-height: 1;
+    color: #647163;
+    font-weight: 300;
+}
+
+:host ::ng-deep h4, .h4 {
+    font-size: 1.4em!important;
+}
+
+select.minimal {
+    background-image:
+      linear-gradient(45deg, transparent 50%, gray 50%),
+      linear-gradient(135deg, gray 50%, transparent 50%),
+      linear-gradient(to right, transparent , transparent );
+    background-position:
+      calc(100% - 20px) calc(1em + 2px),
+      calc(100% - 15px) calc(1em + 2px),
+      calc(100% - 2.5em) 0.5em;
+    background-size:
+      5px 5px,
+      5px 5px,
+      1px 1.5em;
+    background-repeat: no-repeat;
+  }
+
+select.minimal:focus {
+    background-image:
+      linear-gradient(45deg, green 50%, transparent 50%),
+      linear-gradient(135deg, transparent 50%, green 50%),
+      linear-gradient(to right, transparent , transparent );
+    background-position:
+      calc(100% - 15px) 1em,
+      calc(100% - 20px) 1em,
+      calc(100% - 2.5em) 0.5em;
+    background-size:
+      5px 5px,
+      5px 5px,
+      1px 1.5em;
+    background-repeat: no-repeat;
+    border-color: green;
+    outline: 0;
+  }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}

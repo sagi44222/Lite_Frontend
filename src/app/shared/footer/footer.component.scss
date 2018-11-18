@@ -1,0 +1,33 @@
+.footer-card{
+    padding: 1%;
+    margin: 0px!important;
+    border-top: 1px solid #6f9c40!important;
+    border-radius: 0px!important;
+}
+
+.green-text{
+    color: #6f9c40;
+    font-weight: 500;
+    font-size: 1.1em;
+    padding: none;
+}
+
+:host ::ng-deep ngb-accordion .card {
+    border-bottom: 1px solid #cccccc!important;
+    line-height: 1.6em;
+}
+
+.fcopy {
+    font-weight: 300!important;
+    font-size: 0.9rem!important;
+    color: #2b4a27!important;
+}
+
+.fpadding{
+    padding: 0px 10px!important;
+}
+
+.extext{
+    font-weight: 300!important;
+    color: #647163!important;
+}

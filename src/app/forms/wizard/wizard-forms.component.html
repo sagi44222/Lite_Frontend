@@ -1,0 +1,941 @@
+<!-- Wizard Starts -->
+<p-growl [(value)]="msgs"></p-growl>
+
+<div style="height: 23px; background: #6f9c40;"></div>
+<div class="row">
+  <div class="col-sm-12" style="padding:0 10%;">
+    <div style="height:100px;">
+      <a class="logo-text float-left" href="#" style="padding-top: 25px;">
+        <div class="logo-img">
+          <img src="assets/img/smart-logo.png">
+        </div>
+      </a>
+    </div>
+    <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;">GET YOUR FERTILIZER PLAN</h1>
+    <h1 class="content-header" class="htitle"><span *ngIf="isText">in under 15 minutes, for only $79</span> </h1>
+    <p class="hstitle"><span *ngIf="isText"> {{tname}}
+      <strong>{{tnameStrong}}</strong>
+      <br> With more than 250 crops available, this is your gateway to precise and more successful farming!</span></p>
+  </div>
+</div>
+
+<div class="row" style="background:#f7f7f7;padding:0 10%;">
+  <div class="col-md-12">
+    <div class="card" style="background: #f7f7f7!important;box-shadow: none;">
+      <div class="card-body">
+        <div class="card-block">
+          <aw-wizard [defaultStepIndex]="stepIndex" [disableNavigationBar]="isDisableWizard" [navBarLayout]="'small'"
+            [navigationMode]="'free'">
+            <aw-wizard-step stepTitle="Step 1" (stepEnter)="scrolltoTop(0)">
+              <form [formGroup]="step1Form" (ngSubmit)="step1()">
+                <div class="row">
+                  <div class="col-md-6">
+				  <br>
+                    <h4 class="fgreen">Let's get started</h4>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <span class="has-float-label">
+                            <label for="first">First name</label>
+                            <input class="form-control" id="first" type="text" value="" name="firstName" placeholder="First Name"
+                              formControlName="firstName" />
+                          </span>
+                          <small *ngIf="step1Form.controls['firstName'].hasError('required') && step1Form.controls['firstName'].touched"
+                            class="font-small-1 text-danger">
+                            First name is required
+                          </small>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <span class="has-float-label">
+                            <label for="first">Last name</label>
+                            <input class="form-control" id="last" type="text" value="" name="lastName" placeholder="Last Name"
+                              formControlName="lastName" />
+
+                          </span>
+
+                          <small *ngIf="step1Form.controls['lastName'].hasError('required') && step1Form.controls['lastName'].touched"
+                            class="font-small-1 text-danger">
+                            Last name is required
+                          </small>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <span class="has-float-label">
+                            <label for="email">Email address</label>
+                            <input class="form-control" id="email" type="text" value="" name="email" placeholder="Email"
+                              formControlName="email" />
+
+                          </span>
+                          <small *ngIf="step1Form.controls['email'].hasError('required') && step1Form.controls['email'].touched"
+                            class="font-small-1 text-danger">
+                            Email address is required
+                          </small>
+                          <small *ngIf="step1Form.controls['email'].hasError('pattern') && step1Form.controls['email'].touched && !step1Form.controls['email'].hasError('required')"
+                            class="font-small-1 text-danger">
+                            Email address is invalid
+                          </small>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <span class="form-group has-float-label">
+                            <select class="form-control custom-select minimal" name="country" formControlName="country">
+                              <option value="Afghanistan">Afghanistan</option>
+                              <option value="Albania">Albania</option>
+                              <option value="Algeria">Algeria</option>
+                              <option value="Andorra">Andorra</option>
+                              <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                              <option value="Argentina">Argentina</option>
+                              <option value="Armenia">Armenia</option>
+                              <option value="Australia">Australia</option>
+                              <option value="Austria">Austria</option>
+                              <option value="Azerbaijan">Azerbaijan</option>
+                              <option value="Bahamas">Bahamas</option>
+                              <option value="Bahrain">Bahrain</option>
+                              <option value="Bangladesh">Bangladesh</option>
+                              <option value="Barbados">Barbados</option>
+                              <option value="Belarus">Belarus</option>
+                              <option value="Belgium">Belgium</option>
+                              <option value="Belize">Belize</option>
+                              <option value="Benin">Benin</option>
+                              <option value="Bhutan">Bhutan</option>
+                              <option value="Bolivia">Bolivia</option>
+                              <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                              <option value="Botswana">Botswana</option>
+                              <option value="Brazil">Brazil</option>
+                              <option value="Brunei">Brunei</option>
+                              <option value="Bulgaria">Bulgaria</option>
+                              <option value="Burkina Faso">Burkina Faso</option>
+                              <option value="Burundi">Burundi</option>
+                              <option value="Cambodia">Cambodia</option>
+                              <option value="Cameroon">Cameroon</option>
+                              <option value="Canada">Canada</option>
+                              <option value="Cape Verde">Cape Verde</option>
+                              <option value="Central African Republic">Central African Republic</option>
+                              <option value="Chad">Chad</option>
+                              <option value="Chile">Chile</option>
+                              <option value="China">China</option>
+                              <option value="Colombia">Colombia</option>
+                              <option value="Comoros">Comoros</option>
+                              <option value="Congo">Congo</option>
+                              <option value="Costa Rica">Costa Rica</option>
+                              <option value="Cote d'Ivoire">Cote d'Ivoire</option>
+                              <option value="Croatia">Croatia</option>
+                              <option value="Cuba">Cuba</option>
+                              <option value="Cyprus">Cyprus</option>
+                              <option value="Czech Republic">Czech Republic</option>
+                              <option value="Denmark">Denmark</option>
+                              <option value="Djibouti">Djibouti</option>
+                              <option value="Dominica">Dominica</option>
+                              <option value="Dominican Republic">Dominican Republic</option>
+                              <option value="East Timor">East Timor</option>
+                              <option value="Ecuador">Ecuador</option>
+                              <option value="Egypt">Egypt</option>
+                              <option value="El Salvador">El Salvador</option>
+                              <option value="Equatorial Guinea">Equatorial Guinea</option>
+                              <option value="Eritrea">Eritrea</option>
+                              <option value="Estonia">Estonia</option>
+                              <option value="Ethiopia">Ethiopia</option>
+                              <option value="Fiji">Fiji</option>
+                              <option value="Finland">Finland</option>
+                              <option value="France">France</option>
+                              <option value="Gabon">Gabon</option>
+                              <option value="Gambia">Gambia</option>
+                              <option value="Georgia">Georgia</option>
+                              <option value="Germany">Germany</option>
+                              <option value="Ghana">Ghana</option>
+                              <option value="Greece">Greece</option>
+                              <option value="Grenada">Grenada</option>
+                              <option value="Guatemala">Guatemala</option>
+                              <option value="Guinea">Guinea</option>
+                              <option value="Guinea-Bissau">Guinea-Bissau</option>
+                              <option value="Guyana">Guyana</option>
+                              <option value="Haiti">Haiti</option>
+                              <option value="Honduras">Honduras</option>
+                              <option value="Hong Kong">Hong Kong</option>
+                              <option value="Hungary">Hungary</option>
+                              <option value="Iceland">Iceland</option>
+                              <option value="India">India</option>
+                              <option value="Indonesia">Indonesia</option>
+                              <option value="Iran">Iran</option>
+                              <option value="Iraq">Iraq</option>
+                              <option value="Ireland">Ireland</option>
+                              <option value="Israel">Israel</option>
+                              <option value="Italy">Italy</option>
+                              <option value="Jamaica">Jamaica</option>
+                              <option value="Japan">Japan</option>
+                              <option value="Jordan">Jordan</option>
+                              <option value="Kazakhstan">Kazakhstan</option>
+                              <option value="Kenya">Kenya</option>
+                              <option value="Kiribati">Kiribati</option>
+                              <option value="North Korea">North Korea</option>
+                              <option value="South Korea">South Korea</option>
+                              <option value="Kuwait">Kuwait</option>
+                              <option value="Kyrgyzstan">Kyrgyzstan</option>
+                              <option value="Laos">Laos</option>
+                              <option value="Latvia">Latvia</option>
+                              <option value="Lebanon">Lebanon</option>
+                              <option value="Lesotho">Lesotho</option>
+                              <option value="Liberia">Liberia</option>
+                              <option value="Libya">Libya</option>
+                              <option value="Liechtenstein">Liechtenstein</option>
+                              <option value="Lithuania">Lithuania</option>
+                              <option value="Luxembourg">Luxembourg</option>
+                              <option value="Macedonia">Macedonia</option>
+                              <option value="Madagascar">Madagascar</option>
+                              <option value="Malawi">Malawi</option>
+                              <option value="Malaysia">Malaysia</option>
+                              <option value="Maldives">Maldives</option>
+                              <option value="Mali">Mali</option>
+                              <option value="Malta">Malta</option>
+                              <option value="Marshall Islands">Marshall Islands</option>
+                              <option value="Mauritania">Mauritania</option>
+                              <option value="Mauritius">Mauritius</option>
+                              <option value="Mexico">Mexico</option>
+                              <option value="Micronesia">Micronesia</option>
+                              <option value="Moldova">Moldova</option>
+                              <option value="Monaco">Monaco</option>
+                              <option value="Mongolia">Mongolia</option>
+                              <option value="Montenegro">Montenegro</option>
+                              <option value="Morocco">Morocco</option>
+                              <option value="Mozambique">Mozambique</option>
+                              <option value="Myanmar">Myanmar</option>
+                              <option value="Namibia">Namibia</option>
+                              <option value="Nauru">Nauru</option>
+                              <option value="Nepal">Nepal</option>
+                              <option value="Netherlands">Netherlands</option>
+                              <option value="New Zealand">New Zealand</option>
+                              <option value="Nicaragua">Nicaragua</option>
+                              <option value="Niger">Niger</option>
+                              <option value="Nigeria">Nigeria</option>
+                              <option value="Norway">Norway</option>
+                              <option value="Oman">Oman</option>
+                              <option value="Pakistan">Pakistan</option>
+                              <option value="Palau">Palau</option>
+                              <option value="Panama">Panama</option>
+                              <option value="Papua New Guinea">Papua New Guinea</option>
+                              <option value="Paraguay">Paraguay</option>
+                              <option value="Peru">Peru</option>
+                              <option value="Philippines">Philippines</option>
+                              <option value="Poland">Poland</option>
+                              <option value="Portugal">Portugal</option>
+                              <option value="Puerto Rico">Puerto Rico</option>
+                              <option value="Qatar">Qatar</option>
+                              <option value="Romania">Romania</option>
+                              <option value="Russia">Russia</option>
+                              <option value="Rwanda">Rwanda</option>
+                              <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                              <option value="Saint Lucia">Saint Lucia</option>
+                              <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                              <option value="Samoa">Samoa</option>
+                              <option value="San Marino">San Marino</option>
+                              <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                              <option value="Saudi Arabia">Saudi Arabia</option>
+                              <option value="Senegal">Senegal</option>
+                              <option value="Serbia and Montenegro">Serbia and Montenegro</option>
+                              <option value="Seychelles">Seychelles</option>
+                              <option value="Sierra Leone">Sierra Leone</option>
+                              <option value="Singapore">Singapore</option>
+                              <option value="Slovakia">Slovakia</option>
+                              <option value="Slovenia">Slovenia</option>
+                              <option value="Solomon Islands">Solomon Islands</option>
+                              <option value="Somalia">Somalia</option>
+                              <option value="South Africa">South Africa</option>
+                              <option value="Spain">Spain</option>
+                              <option value="Sri Lanka">Sri Lanka</option>
+                              <option value="Sudan">Sudan</option>
+                              <option value="Suriname">Suriname</option>
+                              <option value="Swaziland">Swaziland</option>
+                              <option value="Sweden">Sweden</option>
+                              <option value="Switzerland">Switzerland</option>
+                              <option value="Syria">Syria</option>
+                              <option value="Taiwan">Taiwan</option>
+                              <option value="Tajikistan">Tajikistan</option>
+                              <option value="Tanzania">Tanzania</option>
+                              <option value="Thailand">Thailand</option>
+                              <option value="Togo">Togo</option>
+                              <option value="Tonga">Tonga</option>
+                              <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                              <option value="Tunisia">Tunisia</option>
+                              <option value="Turkey">Turkey</option>
+                              <option value="Turkmenistan">Turkmenistan</option>
+                              <option value="Tuvalu">Tuvalu</option>
+                              <option value="Uganda">Uganda</option>
+                              <option value="Ukraine">Ukraine</option>
+                              <option value="United Arab Emirates">United Arab Emirates</option>
+                              <option value="United Kingdom">United Kingdom</option>
+                              <option value="United States">United States</option>
+                              <option value="Uruguay">Uruguay</option>
+                              <option value="Uzbekistan">Uzbekistan</option>
+                              <option value="Vanuatu">Vanuatu</option>
+                              <option value="Vatican City">Vatican City</option>
+                              <option value="Venezuela">Venezuela</option>
+                              <option value="Vietnam">Vietnam</option>
+                              <option value="Yemen">Yemen</option>
+                              <option value="Zambia">Zambia</option>
+                              <option value="Zimbabwe">Zimbabwe</option>
+                            </select>
+                            <span>Country</span>
+                            <small *ngIf="step1Form.controls['country'].hasError('required') && step1Form.controls['country'].touched"
+                              class="font-small-1 text-danger">
+                              Country is required
+                            </small>
+                          </span>
+
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-md-6" style="padding-top:40px;">
+                    <p class="bultext">
+                      <i class="fa fa-asterisk">
+                      </i>
+                      For filling out the form you will need your
+                      <strong>latest soil test</strong>.
+                    </p>
+                    <p class="bultext">
+                      <i class="fa fa-asterisk">
+                      </i>
+                      The fertilizer plan provided will show you the amount of fertilizers needed for 1 ha/1ac. 
+
+					  <a style="border-bottom: 1px solid;font-style: italic;" href="#">Here you can see an example fertilizer plan</a>.
+                    </p>
+                    <p class="bultext">
+                      <i class="fa fa-asterisk"> </i>                       Smart light deliver fertilizer plans for all soil-grown crops. If you are growing Hydropnics, check out our 
+                      <a style="border-bottom: 1px solid;font-style: italic;" href="#">Premium solution. </a>
+
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <button type="submit" class="btn-wiz btn" [disabled]="step1Form.invalid" awNextStep>NEXT</button>
+                  </div>
+                  <div class="col-md-10">
+                    <p class="termscs" style="line-height: 1.1;">By clicking this button, you agree to SMART<br>Fertilizer's
+                      <a style="border-bottom: 1px solid;"> Privacy Policy</a> and <a style="border-bottom: 1px solid;">Terms of Use. </a>
+                    </p>
+                  </div>
+                </div>
+              </form>
+            </aw-wizard-step>
+            <aw-wizard-step stepTitle="Step 2" (stepEnter)="scrolltoTop(1)">
+              <form [formGroup]="step2Form" (ngSubmit)="step2()">
+                <div class="row">
+                  <div class="col-md-12">
+				  <br>
+                    <h4 class="fgreen">Tell us about your crops</h4>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <div class="position-relative has-icon-right dropdown ">
+                            <input class="form-control" autocomplete="off" (keypress)="changed()" name="cropName"
+                              formControlName="cropName" value="" type="text" placeholder="Type crop name">
+                            <div class="form-control-position ">
+                              <i class="ft-search"></i>
+                            </div>
+                            <div class="dropdown-content" *ngIf="DropdownVar == 2">
+                              <!-- <div class="row">
+                                <div *ngFor="let item of crops;">
+                                  <div *ngIf="crops.length == 1" class="col-md-12">
+                                    <span style="margin: 0 0 0 5px;">
+                                      <strong>{{item.alpha}}</strong>
+                                    </span>
+                                    <a (click)="changeText1(rec.Name,rec.Id)" style="margin: 0 0 0 5px;" *ngFor="let rec of item.records">{{rec.Name}}</a>
+                                  </div>
+                                  <div *ngIf="crops.length > 1" class="col-md-4">
+                                    <span style="margin: 0 0 0 5px;">
+                                      <strong>{{item.alpha}}</strong>
+                                    </span>
+                                    <a (click)="changeText1(rec.Name,rec.Id)" style="margin: 0 0 0 5px;" *ngFor="let rec of item.records">{{rec.Name}}</a>
+                                  </div>
+                                </div>
+                              </div> -->
+                              <div *ngIf="crops.length == 1" class="row">
+                                <div *ngFor="let item of crops;" class="col-md-12">
+                                  <span *ngIf="item.alpha" style="margin: 0 0 0 5px;">
+                                    <strong>{{item.alpha}}</strong>
+                                  </span>
+                                  <a (click)="changeText1(rec.Name,rec.Id)" style="margin: 0 0 0 5px;" *ngFor="let rec of item.records">{{rec.Name}}</a>
+                                </div>
+                              </div>
+                              <div *ngIf="crops.length > 1" class="row">
+                                <div *ngFor="let item of crops;" class="col-md-4">
+                                  <span *ngIf="item.alpha" style="margin: 0 0 0 5px;">
+                                    <strong>{{item.alpha}}</strong>
+                                  </span>
+                                  <a (click)="changeText1(rec.Name,rec.Id)" style="margin: 0 0 0 5px;" *ngFor="let rec of item.records">{{rec.Name}}</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <small *ngIf="step2Form.controls['cropName'].hasError('required') && step2Form.controls['cropName'].touched"
+                            class="font-small-1 text-danger">
+                            Crop Name is required
+                          </small>
+                        </div>
+                      </div>
+                      <div class="col-md-6"></div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <span class="form-group has-float-label">
+                            <select class="form-control custom-select minimal" name="variety" formControlName="variety"
+                              (change)="changeText2($event.target.value)">
+                              <option value="">-- Select Variety --</option>
+                              <option *ngFor="let item of varietyData" value="{{item.Id}}">{{item.Name}}</option>
+                            </select>
+                            <span>Crop variety</span>
+                            <small *ngIf="step2Form.controls['variety'].hasError('required') && step2Form.controls['variety'].touched"
+                              class="font-small-1 text-danger">
+                              Crop variety is required
+                            </small>
+                          </span>
+
+                        </div>
+                      </div>
+                      <div class="col-md-6"></div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <span class="form-group has-float-label">
+                            <select class="form-control custom-select minimal" name="specifics" formControlName="specifics">
+                              <option value="">-- Select Specifics --</option>
+                              <option *ngFor="let item of soilType" value="{{item.Name}}">{{item.Name}}</option>
+                            </select>
+                            <span>Specifics</span>
+                            <small *ngIf="step2Form.controls['specifics'].hasError('required') && step2Form.controls['specifics'].touched"
+                              class="font-small-1 text-danger">
+                              Specifics are required
+                            </small>
+                          </span>
+
+                        </div>
+                      </div>
+                      <div class="col-md-6"></div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <span class="form-group has-float-label">
+                            <span>Plot size</span>
+                            <input class="form-control" type="number" min="0" placeholder="Plot size" name="plotSize"
+                              formControlName="plotSize">
+
+                            <small *ngIf="step2Form.controls['plotSize'].hasError('required') && step2Form.controls['plotSize'].touched"
+                              class="font-small-1 text-danger">
+                              Plot size is required
+                            </small>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <span class="form-group has-float-label">
+                            <select class="form-control custom-select minimal" name="plotSizeUnit" formControlName="plotSizeUnit">
+                              <option value="Hectare">Hectare (ha)</option>
+                              <option value="Acre">Acre (ac)</option>
+                            </select>
+                            <span>Unit</span>
+                            <small *ngIf="step2Form.controls['plotSizeUnit'].hasError('required') && step2Form.controls['plotSizeUnit'].touched"
+                              class="font-small-1 text-danger">
+                              Plot size unit is required
+                            </small>
+                          </span>
+
+                        </div>
+                      </div>
+                      <div class="col-md-6"></div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <span class="form-group has-float-label">
+                            <span>Average yield</span>
+                            <input class="form-control" type="number" min="0" placeholder="Average yield" name="averageYield"
+                              formControlName="averageYield">
+
+                            <small *ngIf="step2Form.controls['averageYield'].hasError('required') && step2Form.controls['averageYield'].touched"
+                              class="font-small-1 text-danger">
+                              Average yield is required
+                            </small>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <span class="form-group has-float-label">
+                            <select class="form-control custom-select minimal" name="averageYieldUnit" formControlName="averageYieldUnit">
+                              <option value="mt/Hectare">mt/ha</option>
+                              <option value="ton/Acre">ton/ac</option>
+                            </select>
+                            <span>Unit</span>
+                            <small *ngIf="step2Form.controls['averageYieldUnit'].hasError('required') && step2Form.controls['averageYieldUnit'].touched"
+                              class="font-small-1 text-danger">
+                              Average yield unit is required
+                            </small>
+                          </span>
+
+                        </div>
+                      </div>
+                      <div class="fgreen col-md-6">
+                        <table>
+                          <tr>
+                            <td style="width: 40px;">
+                              <i class="fa icon-info fa-2x">
+                              </i>
+                            </td>
+                            <td>
+                              If this is your first year growing this crop and you have no average yield from previous years,
+                              please lookup average yields in your area.
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <button type="button" class="btn-custom btn" awPreviousStep>BACK</button>
+                <button type="submit" class="btn-wiz btn" [disabled]="step2Form.invalid" awNextStep>NEXT</button>
+              </form>
+            </aw-wizard-step>
+            <aw-wizard-step stepTitle="Step 3" (stepEnter)="scrolltoTop(2)">
+              <form [formGroup]="step3Form" (ngSubmit)="step3()">
+                <div class="row">
+                  <div class="col-md-12">
+				  <br>
+                    <h4 class="fgreen">Your soil composition and fertility. Now your latest soil test is required.</h4>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <span class="form-group has-float-label">
+                            <select class="form-control custom-select minimal" name="texture" formControlName="texture">
+                              <option value="Sandy">Sandy</option>
+                              <option value="Sandy Loam">Sandy Loam</option>
+                              <option value="Silt">Silt</option>
+                              <option value="Silt Loam">Silt Loam</option>
+                              <option value="Silty Clay">Silty Clay</option>
+                              <option value="Loam">Loam</option>
+                              <option value="Sandy Cla">Sandy Clay </option>
+                              <option value="Clay Loam">Clay Loam</option>
+                              <option value="Clay">Clay</option>
+                            </select>
+                            <span>Soil texture</span>
+                            <small *ngIf="step3Form.controls['texture'].hasError('required') && step3Form.controls['texture'].touched"
+                              class="font-small-1 text-danger">
+                              Texture is required
+                            </small>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <!-- <div class="position-relative has-icon-right"> -->
+                          <span class="has-float-label">
+                            <label for="Organic Matter">Organic matter (OM)</label>
+                            <input class="form-control" type="number" min="0" max="99" placeholder="Organic Matter %"
+                              name="organicMatter" formControlName="organicMatter">
+
+                            <!-- <div class="form-control-position">
+                                <i class="ft-percent"></i>
+                              </div> -->
+                          </span>
+                          <small *ngIf="step3Form.controls['organicMatter'].hasError('required') && step3Form.controls['organicMatter'].touched"
+                            class="font-small-1 text-danger">
+                            Organic matter (OM) is required
+                          </small>
+                          <small *ngIf="step3Form.controls['organicMatter'].hasError('min') || step3Form.controls['organicMatter'].hasError('max')"
+                            class="font-small-1 text-danger">
+                            Organic matter (OM)should be between 0 and 99
+                          </small>
+                          <!-- </div> -->
+                        </div>
+
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <span class="has-float-label">
+                            <label for="ph">pH</label>
+                            <input class="form-control" id="ph" min="1" max="13" type="number" placeholder="pH" name="ph"
+                              formControlName="ph" />
+
+                          </span>
+                          <small *ngIf="step3Form.controls['ph'].hasError('required') && step3Form.controls['ph'].touched"
+                            class="font-small-1 text-danger">
+                            pH is required
+                          </small>
+                          <small *ngIf="step3Form.controls['ph'].hasError('min') || step3Form.controls['ph'].hasError('max')"
+                            class="font-small-1 text-danger">
+                            pH should be between 1 and 13
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <h4 class="fgreen">
+                      <strong>Nutrient</strong>
+                    </h4>
+                  </div>
+                  <div class="col-md-4">
+                    <h4 class="fgreen">
+                      <strong>Extraction method</strong>
+                    </h4>
+                  </div>
+                  <div class="col-md-4">
+                    <h4 class="fgreen">
+                      <strong>Value</strong>
+                    </h4>
+                  </div>
+                </div>
+                <div formArrayName="nutrientData">
+                  <div class="row" *ngFor="let item of alldata; let i=index" [formGroupName]="i">
+                    <div class="col-md-4">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <span class="form-group has-float-label">
+                              <select class="form-control custom-select minimal" name="nutrient" formControlName="nutrient">
+                                <option *ngFor="let nu of item.nutrients" [value]="nu.value.id">{{nu.value.name}}</option>
+                              </select>
+                              <span>Nutrient</span>
+                              <small *ngIf="step3Form.controls['nutrientData'].hasError('required') && step3Form.controls['nutrientData'].touched"
+                                class="font-small-1 text-danger">
+                                Nutrient is required
+                              </small>
+                            </span>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <span class="form-group has-float-label">
+                              <select class="form-control custom-select minimal" name="nutrientUnit" formControlName="nutrientUnit">
+                                <option *ngFor="let item of unitesData" [value]="item.name">{{item.name}}</option>
+                              </select>
+                              <span>Unit</span>
+                              <small *ngIf="step3Form.controls['nutrientData'].hasError('required') && step3Form.controls['nutrientData'].touched"
+                                class="font-small-1 text-danger">
+                                Nutrient Unit is required
+                              </small>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="form-group has-float-label">
+                          <select class="form-control custom-select minimal" name="extMethod" formControlName="extMethod">
+                            <option *ngFor="let ext of item.extMethod" [value]="ext.value.id">{{ext.value.name}}</option>
+                          </select>
+                          <span>Extraction method</span>
+                          <small *ngIf="step3Form.controls['nutrientData'].hasError('required') && step3Form.controls['nutrientData'].touched"
+                            class="font-small-1 text-danger">
+                            Extraction method is required
+                          </small>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <span class="has-float-label">
+                          <label for="value">Enter value</label>
+                          <input class="form-control" id="value" type="number" min="0" placeholder="Enter value" name="value"
+                            formControlName="value" (keyup)="nutrientChange()" />
+                          <small *ngIf="step3Form.controls['nutrientData'].hasError('required') && step3Form.controls['nutrientData'].touched"
+                            class="font-small-1 text-danger">
+                            Value is required
+                          </small>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="btn-custom btn" awPreviousStep>BACK</button>
+                <button type="submit" class="btn-wiz btn" [disabled]="step3Form.invalid || isNutrient" awNextStep>NEXT</button>
+              </form>
+            </aw-wizard-step>
+            <aw-wizard-step stepTitle="Step 4" (stepEnter)="scrolltoTop(3)">
+              <div class="row">
+                <div class="col-md-12">
+				<br>
+                  <h4 class="fgreen">Carefully check your details</h4>
+                </div>
+                <div class="col-md-12">
+					<p style="color:#647163;">Please take a moment to check the data you entered. Once you click "Get Report", SMART Lite will use this data set to create your fertilizer plan.
+				  </p>
+                </div>
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-5">
+                      <h4>
+                        <strong>{{form1?.firstName}} {{form1?.lastName}} from {{form1?.country}}</strong>
+                      </h4>
+                      <h4>
+                        <strong>Email: {{form1?.email}}</strong>
+                      </h4>
+                      <br>
+                      <button class="btn btn-custom" [awGoToStep]="{ stepIndex: 0 }">CHANGE</button>
+                      <hr>
+                      <h4>
+                        <strong>Crop details</strong>
+                      </h4>
+                      <table style="width:100%;">
+                        <tr>
+                          <td>Name:</td>
+                          <th>{{form2?.cropName}}</th>
+                        </tr>
+                        <tr>
+                          <td>Variety:</td>
+                          <th>{{varietyName}}</th>
+                        </tr>
+                        <tr>
+                          <td>Specifics:</td>
+                          <th>{{form2?.specifics}}</th>
+                        </tr>
+                        <tr>
+                          <td>Plot size:</td>
+                          <th>{{form2?.plotSize}} {{form2?.plotSizeUnit}}</th>
+                        </tr>
+                        <tr>
+                          <td>Average yield:</td>
+                          <th>{{form2?.averageYield}} {{form2?.averageYieldUnit}}</th>
+                        </tr>
+                      </table>
+                      <br>
+                      <button class="btn btn-custom" [awGoToStep]="{ stepIndex: 1 }">CHANGE</button>
+                      <hr>
+                      <h4>
+                        <strong>Soil</strong>
+                      </h4>
+                      <table style="width:100%;">
+                        <tr>
+                          <td>Soil Texture:</td>
+                          <th>{{form3?.texture}}</th>
+                        </tr>
+                        <tr>
+                          <td>Organic material (OM):</td>
+                          <th>{{form3?.organicMatter}}%</th>
+                        </tr>
+                        <tr>
+                          <td>pH:</td>
+                          <th>{{form3?.ph}}</th>
+                        </tr>
+                      </table>
+                      <br>
+                      <button class="btn btn-custom" [awGoToStep]="{ stepIndex: 2 }">CHANGE</button>
+                    </div>
+                    <div class="col-md-7">
+                      <h4>
+                        <strong>Soil nutrition values</strong>
+                      </h4>
+                      <table style="width:100%;">
+                        <tr *ngFor="let item of form3?.nutrientData;let i=index">
+                          <td> {{item.nutrient}}</td>
+                          <th>{{item.extMethod}}</th>
+                          <th>{{item.value}}</th>
+                          <th>{{item.nutrientUnit}}</th>
+                        </tr>
+                      </table>
+                      <br>
+                      <button class="btn btn-custom" [awGoToStep]="{ stepIndex: 2 }">CHANGE</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <button type="button" class="btn-custom btn" awPreviousStep>BACK</button> -->
+              <form ngNoForm action='https://sandbox.2checkout.com/checkout/purchase' method='post'>
+                <input type='hidden' name='sid' value='901385127' />
+                <input type='hidden' name='mode' value='2CO' />
+                <input type='hidden' name='li_0_type' value='product' />
+                <input type='hidden' name='li_0_name' value='Subscription' />
+                <input type='hidden' name='li_0_price' value='79' />
+                <input type='hidden' name='li_0_quantity' value='1' />
+                <input type='hidden' name='li_0_tangible' value='N' />
+                <input type='hidden' name='card_holder_name' value='Checkout Shopper' />
+                <input type='hidden' name='street_address' value='123 Test Address' />
+                <input type='hidden' name='street_address2' value='Suite 200' />
+                <input type='hidden' name='city' value='Columbus' />
+                <input type='hidden' name='state' value='OH' />
+                <input type='hidden' name='zip' value='43228' />
+                <input type='hidden' name='country' value='USA' />
+                <input type='hidden' name='currency_code' value='USD' />
+                <!-- <input type='hidden' name='x_receipt_link_url' value='http://localhost:4200/forms/wizard' /> -->
+                <input type='hidden' name='email' value='example@2co.com' />
+                <input type='hidden' name='phone' value='614-921-2450' />
+                <input name='submit' type='submit' class="btn-wiz btn" *ngIf="!isPay" [disabled]="isConvert" value='GET REPORT' />
+              </form>
+              <!-- <button type="button" class="btn-wiz btn" awNextStep>GET REPORT</button> -->
+            </aw-wizard-step>
+            <aw-wizard-step stepTitle="Step 5" (stepEnter)="scrolltoTop(4)">
+              <br>
+              <div class="row" *ngIf="!reportData" style="margin:auto 0;">
+                <div class="col-md-12 text-center">
+                  <h4 class="fgreen text-center col-md-12">Almost ready ...</h4>
+                  <img src="assets/img/ajax-loader.gif" />
+                </div>
+              </div>
+              <div class="row" *ngIf="reportData">
+                <div class="col-md-12" *ngIf="reportData.ScheduleResponse">
+                  <button style="float:right;" class="btn btn-custom" (click)="captureScreen()">
+                    <i class="fa fa-download"></i> PDF</button>
+                </div>
+
+              </div>
+              <div class="row" *ngIf="reportData" #contentToConvert id="contentToConvert">
+
+                <div class="col-md-12" *ngIf="reportData.ScheduleResponse" style="margin-top: 20px;">
+                  <span style="font-size: 24px;" class="fgreen">Fertilizer Schedule</span>
+                  <span style="float:right;">{{fdate | date:'short'}}</span>
+                </div>
+                <div class="col-md-12" *ngIf="reportData.ScheduleResponse">
+                  <table style="border-bottom: 1px solid;border-top: 1px solid;" class="table table-borderless">
+                    <tr>
+                      <td>Crop</td>
+                      <th>{{form2?.cropName}}</th>
+                      <!-- <td>Variety</td>
+                      <th>{{form2?.variety}}</th> -->
+                    </tr>
+                    <tr>
+                      <!-- <td>Growing method</td>
+                      <th>{{form2?.specifics}}</th> -->
+                      <td>Yield goal</td>
+                      <th>{{form2?.averageYield}}</th>
+                    </tr>
+                  </table>
+                  <!-- <p>You will receive your fertilizer recommendation shortly delivered to your inbox.</p> -->
+                  <p-accordion [multiple]="true">
+                    <!-- <p-accordionTab header="Nutrient Summary" [selected]="true">
+                      <table class="table">
+                        <tr>
+                          <td>Nutrient</td>
+                          <td>Actual Requirement</td>
+                          <td>Current Application</td>
+                          <td>Fulfilled Requirement</td>
+                        </tr>
+                        <tr>
+                          <th>N</th>
+                          <th>{{actual_N | number}}</th>
+                          <th>{{current_N | number}}</th>
+                          <th>{{fullfilled_N | number}}</th>
+                        </tr>
+                        <tr>
+                          <th>P</th>
+                          <th>{{actual_P | number}}</th>
+                          <th>{{current_P | number}}</th>
+                          <th>{{fullfilled_P | number}}</th>
+                        </tr>
+                        <tr>
+                          <th>K</th>
+                          <th>{{actual_K | number}}</th>
+                          <th>{{current_K | number}}</th>
+                          <th>{{fullfilled_K | number}}</th>
+                        </tr>
+                      </table>
+                    </p-accordionTab> -->
+                    <p-accordionTab header="Stages" *ngIf="reportData?.ScheduleResponse?.stages" [selected]="true">
+                      <div *ngFor="let item of reportData?.ScheduleResponse?.stages">
+                        <p>
+                          <span style="float: left;vertical-align: middle;color: #3e8e41;">
+                            <i  class="ft-chevron-right"></i> {{item.Name}}
+                          </span>
+                          <span style="float: right;">
+                            Duration :
+                            <strong>{{item?.Duration}} Days</strong>
+                          </span>
+                        </p>
+                        <table class="table">
+                          <tr>
+                            <th>Fertilizer Name</th>
+                            <th>Application Amount</th>
+                            <th>Unit</th>
+                          </tr>
+                          <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
+                            <td *ngIf="fer?.Concentration != 0">{{fer?.Name}}</td>
+                            <td *ngIf="fer?.Concentration != 0">{{fer?.Concentration | number:'1.0-0'}}</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">Lbs</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">gal</td>
+                            <td *ngIf="fer?.ConcentrationUnit != 6 && fer?.ConcentrationUnit != 4 && fer?.ConcentrationUnit != 9 && fer?.Concentration != 0"></td>
+                          </tr>
+                        </table>
+                      </div>
+                    </p-accordionTab>
+                    <p-accordionTab header="Season Summary - Fertilizers" [selected]="true">
+                      <table class="table">
+                        <tr>
+                          <th>Fertilizer</th>
+                          <th colspan="2" class="text-center">Quantity</th>
+                        </tr>
+                        <tbody *ngFor="let item of reportData?.ScheduleResponse?.stages">
+                          <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
+                            <td *ngIf="fer?.Concentration != 0">{{fer?.Name}}</td>
+                            <td *ngIf="fer?.Concentration != 0">{{fer?.Concentration | number:'1.0-0'}}</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">Lbs</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">gal</td>
+                            <td *ngIf="fer?.ConcentrationUnit != 6 && fer?.ConcentrationUnit != 4 && fer?.ConcentrationUnit != 9 && fer?.Concentration != 0"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </p-accordionTab>
+                    <p-accordionTab header="Season Summary - NPK distribution" [selected]="true">
+                      <table class="table">
+                        <tr>
+                          <th></th>
+                          <th colspan="2" class="text-center">N</th>
+                          <th colspan="2" class="text-center">P</th>
+                          <th colspan="2" class="text-center">K</th>
+                        </tr>
+                        <tr>
+                          <th>Stage name</th>
+                          <th>kg/ha/stage</th>
+                          <th>kg/ha/day</th>
+                          <th>kg/ha/stage</th>
+                          <th>kg/ha/day</th>
+                          <th>kg/ha/stage</th>
+                          <th>kg/ha/day</th>
+                        </tr>
+                        <tr *ngFor="let item of reportData?.ScheduleResponse?.stages">
+                          <td>{{item?.Name}}</td>
+                          <td>{{item?.FertAddition?.N_Val ? (item?.FertAddition?.N_Val | number:'1.0-0') : 0 }}</td>
+                          <td>{{item?.FertAddition?.N_Val / item?.Duration | number:'1.0-0'}}</td>
+                          <td>{{item?.FertAddition?.P_Val ? (item?.FertAddition?.P_Val | number:'1.0-0' ) : 0 }}</td>
+                          <td>{{item?.FertAddition?.P_Val / item?.Duration | number:'1.0-0'}}</td>
+                          <td>{{item?.FertAddition?.K_Val ? (item?.FertAddition?.K_Val | number:'1.0-0') : 0 }}</td>
+                          <td>{{item?.FertAddition?.K_Val / item?.Duration | number:'1.0-0'}}</td>
+                        </tr>
+                        <tr>
+                          <th>Total</th>
+                          <td>{{getSum('N') | number:'1.0-0'}}</td>
+                          <td>{{getSum('n') | number:'1.0-0'}}</td>
+                          <td>{{getSum('P') | number:'1.0-0'}}</td>
+                          <td>{{getSum('p') | number:'1.0-0'}}</td>
+                          <td>{{getSum('K') | number:'1.0-0'}}</td>
+                          <td>{{getSum('k') | number:'1.0-0'}}</td>
+                        </tr>
+                      </table>
+
+                    </p-accordionTab>
+                  </p-accordion>
+                  <br>
+                  <!-- <button class="btn btn-custom">ACTION?</button> -->
+                </div>
+              </div>
+
+            </aw-wizard-step>
+          </aw-wizard>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Wizard Ends -->
+<!-- <script src="https://www.2checkout.com/static/checkout/javascript/direct.min.js"></script> -->

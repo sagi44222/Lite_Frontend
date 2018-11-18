@@ -1,0 +1,157 @@
+            <div class="row" *ngIf="!reportData" style="margin:auto 0;">
+                <div class="col-md-12 text-center">
+                  <h4 class="fgreen text-center col-md-12">Almost ready ...</h4>
+                  <img src="assets/img/ajax-loader.gif" />
+                </div>
+              </div>
+              <div class="row" *ngIf="reportData">
+                <div class="col-md-12" *ngIf="reportData.ScheduleResponse">
+                  <button style="float:right;" class="btn btn-custom" (click)="captureScreen()">
+                    <i class="fa fa-download"></i> PDF</button>
+                </div>
+
+              </div>
+              <div class="row" *ngIf="reportData" #contentToConvert id="contentToConvert">
+
+                <div class="col-md-12" *ngIf="reportData.ScheduleResponse" style="margin-top: 20px;">
+                  <span style="font-size: 24px;" class="fgreen">Fertilizer Schedule</span>
+                  <span style="float:right;">{{fdate | date:'short'}}</span>
+                </div>
+                <div class="col-md-12" *ngIf="reportData.ScheduleResponse">
+                  <table style="border-bottom: 1px solid;border-top: 1px solid;" class="table table-borderless">
+                    <tr>
+                      <td>Crop</td>
+                      <th>{{form2?.cropName}}</th>
+                      <!-- <td>Variety</td>
+                      <th>{{form2?.variety}}</th> -->
+                    </tr>
+                    <tr>
+                      <!-- <td>Growing method</td>
+                      <th>{{form2?.specifics}}</th> -->
+                      <td>Yield goal</td>
+                      <th>{{form2?.averageYield}}</th>
+                    </tr>
+                  </table>
+                  <!-- <p>You will receive your fertilizer recommendation shortly delivered to your inbox.</p> -->
+                  <p-accordion [multiple]="true">
+                    <!-- <p-accordionTab header="Nutrient Summary" [selected]="true">
+                      <table class="table">
+                        <tr>
+                          <td>Nutrient</td>
+                          <td>Actual Requirement</td>
+                          <td>Current Application</td>
+                          <td>Fulfilled Requirement</td>
+                        </tr>
+                        <tr>
+                          <th>N</th>
+                          <th>{{actual_N | number}}</th>
+                          <th>{{current_N | number}}</th>
+                          <th>{{fullfilled_N | number}}</th>
+                        </tr>
+                        <tr>
+                          <th>P</th>
+                          <th>{{actual_P | number}}</th>
+                          <th>{{current_P | number}}</th>
+                          <th>{{fullfilled_P | number}}</th>
+                        </tr>
+                        <tr>
+                          <th>K</th>
+                          <th>{{actual_K | number}}</th>
+                          <th>{{current_K | number}}</th>
+                          <th>{{fullfilled_K | number}}</th>
+                        </tr>
+                      </table>
+                    </p-accordionTab> -->
+                    <p-accordionTab header="Stages" *ngIf="reportData?.ScheduleResponse?.stages" [selected]="true">
+                      <div *ngFor="let item of reportData?.ScheduleResponse?.stages">
+                        <p>
+                          <span style="float: left;vertical-align: middle;color: #3e8e41;">
+                            <i  class="ft-chevron-right"></i> {{item.Name}}
+                          </span>
+                          <span style="float: right;">
+                            Duration :
+                            <strong>{{item?.Duration}} Days</strong>
+                          </span>
+                        </p>
+                        <table class="table">
+                          <tr>
+                            <th>Fertilizer Name</th>
+                            <th>Application Amount</th>
+                            <th>Unit</th>
+                          </tr>
+                          <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
+                            <td *ngIf="fer?.Concentration != 0">{{fer?.Name}}</td>
+                            <td *ngIf="fer?.Concentration != 0">{{fer?.Concentration | number:'1.0-0'}}</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">Lbs</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">gal</td>
+                            <td *ngIf="fer?.ConcentrationUnit != 6 && fer?.ConcentrationUnit != 4 && fer?.ConcentrationUnit != 9 && fer?.Concentration != 0"></td>
+                          </tr>
+                        </table>
+                      </div>
+                    </p-accordionTab>
+                    <p-accordionTab header="Season Summary - Fertilizers" [selected]="true">
+                      <table class="table">
+                        <tr>
+                          <th>Fertilizer</th>
+                          <th colspan="2" class="text-center">Quantity</th>
+                        </tr>
+                        <tbody *ngFor="let item of reportData?.ScheduleResponse?.stages">
+                          <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
+                            <td *ngIf="fer?.Concentration != 0">{{fer?.Name}}</td>
+                            <td *ngIf="fer?.Concentration != 0">{{fer?.Concentration | number:'1.0-0'}}</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">Lbs</td>
+                            <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">gal</td>
+                            <td *ngIf="fer?.ConcentrationUnit != 6 && fer?.ConcentrationUnit != 4 && fer?.ConcentrationUnit != 9 && fer?.Concentration != 0"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </p-accordionTab>
+                    <p-accordionTab header="Season Summary - NPK distribution" [selected]="true">
+                      <table class="table">
+                        <tr>
+                          <th></th>
+                          <th colspan="2" class="text-center">N</th>
+                          <th colspan="2" class="text-center">P</th>
+                          <th colspan="2" class="text-center">K</th>
+                        </tr>
+                        <tr>
+                          <th>Stage name</th>
+                          <th>kg/ha/stage</th>
+                          <th>kg/ha/day</th>
+                          <th>kg/ha/stage</th>
+                          <th>kg/ha/day</th>
+                          <th>kg/ha/stage</th>
+                          <th>kg/ha/day</th>
+                        </tr>
+                        <tr *ngFor="let item of reportData?.ScheduleResponse?.stages">
+                          <td>{{item?.Name}}</td>
+                          <td>{{item?.FertAddition?.N_Val ? (item?.FertAddition?.N_Val | number:'1.0-0') : 0 }}</td>
+                          <td>{{item?.FertAddition?.N_Val / item?.Duration | number:'1.0-0'}}</td>
+                          <td>{{item?.FertAddition?.P_Val ? (item?.FertAddition?.P_Val | number:'1.0-0' ) : 0 }}</td>
+                          <td>{{item?.FertAddition?.P_Val / item?.Duration | number:'1.0-0'}}</td>
+                          <td>{{item?.FertAddition?.K_Val ? (item?.FertAddition?.K_Val | number:'1.0-0') : 0 }}</td>
+                          <td>{{item?.FertAddition?.K_Val / item?.Duration | number:'1.0-0'}}</td>
+                        </tr>
+                        <tr>
+                          <th>Total</th>
+                          <td>{{getSum('N') | number:'1.0-0'}}</td>
+                          <td>{{getSum('n') | number:'1.0-0'}}</td>
+                          <td>{{getSum('P') | number:'1.0-0'}}</td>
+                          <td>{{getSum('p') | number:'1.0-0'}}</td>
+                          <td>{{getSum('K') | number:'1.0-0'}}</td>
+                          <td>{{getSum('k') | number:'1.0-0'}}</td>
+                        </tr>
+                      </table>
+
+                    </p-accordionTab>
+                  </p-accordion>
+                  <br>
+                  <!-- <button class="btn btn-custom">ACTION?</button> -->
+                </div>
+              </div>
