@@ -11,11 +11,14 @@
         </div>
       </a>
     </div>
-    <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;">GET YOUR FERTILIZER PLAN</h1>
+    <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="firstPage">GET YOUR FERTILIZER PLAN</span></h1>
+    <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="isReportPage">Congratulations, your report is on its way!</span></h1>
+    <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="reportData">Report is ready.</span></h1>
     <h1 class="content-header" class="htitle"><span *ngIf="isText">in under 15 minutes, for only $79</span> </h1>
     <p class="hstitle"><span *ngIf="isText"> {{tname}}
       <strong>{{tnameStrong}}</strong>
       <br> With more than 250 crops available, this is your gateway to precise and more successful farming!</span></p>
+    <span *ngIf="isStep5"> Ursula;'s text here.</span>
   </div>
 </div>
 
@@ -779,7 +782,7 @@
                 </div>
               </div>
               <div class="row" *ngIf="reportData">
-                <div class="col-md-12" *ngIf="reportData.ScheduleResponse">
+                <div class="col-md-12" *ngIf="reportData.ScheduleResponse" >
                   <button style="float:right;" class="btn btn-custom" (click)="captureScreen()">
                     <i class="fa fa-download"></i> PDF</button>
                 </div>

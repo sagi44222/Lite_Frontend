@@ -22,7 +22,7 @@ import * as html2canvas from 'html2canvas';
 
 export class WizardFormsComponent implements OnInit {
     msgs: Message[] = [];
-    value: number = 0;
+    value = 0;
     unitesData: any[] = [];
     extractionData: any[] = [];
     nutrientsData: any[] = [];
@@ -33,7 +33,7 @@ export class WizardFormsComponent implements OnInit {
     }
     alldata: any[] = [];
     cropsData: any[] = [];
-    //type: any[] = ['N', 'P', 'K', 'Ca', 'Mg', 'S', 'B', 'Fe', 'Mn', 'Zn', 'Cu', 'Mo', 'Na', 'Al', 'Cl', 'HCO3'];
+    // type: any[] = ['N', 'P', 'K', 'Ca', 'Mg', 'S', 'B', 'Fe', 'Mn', 'Zn', 'Cu', 'Mo', 'Na', 'Al', 'Cl', 'HCO3'];
     type: any[] = ['N', 'P', 'K', 'Ca', 'Mg', 'S', 'B', 'Fe', 'Mn', 'Zn', 'Cu', 'Mo', 'Na'];
     alpha: any[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
     crops: any[] = [];
@@ -59,49 +59,53 @@ export class WizardFormsComponent implements OnInit {
     reportData: any;
     allcrops: any[] = [];
     payUrl: any;
-    isPay: boolean = false;
-    stepIndex: number = 0;
+    isPay = false;
+    stepIndex = 0;
     sf: any[] = [];
-    isText: boolean = true;
-    actual_N: number = 0;
-    actual_P: number = 0;
-    actual_K: number = 0;
-    current_N: number = 0;
-    current_P: number = 0;
-    current_K: number = 0;
-    fullfilled_N: number = 0;
-    fullfilled_P: number = 0;
-    fullfilled_K: number = 0;
+    isText = true;
+    isStep5 = false;
+    actual_N = 0;
+    actual_P = 0;
+    actual_K = 0;
+    current_N = 0;
+    current_P = 0;
+    current_K = 0;
+    fullfilled_N = 0;
+    fullfilled_P = 0;
+    fullfilled_K = 0;
     fdate: Date = new Date();
-    DropdownVar: number = 2;
-    isConvert: boolean = false;
+    DropdownVar = 2;
+    isConvert = false;
     convertFinal: any[] = [];
     finalYield: any;
-    isNutrient: boolean = true;
-    isDisableWizard: boolean = true;
+    isNutrient = true;
+    isDisableWizard = true;
+  isReportPage = false;
+  firstPage = true;
+  reportTitle = false;
     private _emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    //reportData: any = JSON.parse('{"ScheduleResponse":{"AcidAlert":{"Alert":[]},"stages":[{"AcidAlert":{"Alert":[]},"N_FormsAlert":{"Alert":[]},"Cost":"0","Duration":"10","Recommendation":"Per 10","Id":1,"Name":"s1","FromDate":"2018-07-18T19:41:27","ToDate":"2018-07-27T19:41:27","Ratios":null,"IrrWaterEc":null,"EstimatedIrrWaterEc":null,"TargetValuesEC":null,"TargetValuesEc":null,"SourceWaterEc":null,"IsFeasible":"0","PhIsDisabled":null,"PhIsLow":null,"PhIsUnavailable":null,"PhGoesForTargetPh":null,"IrrWaterPh":null,"IrrWaterHCO3":null,"SelectedFertilizers":{"Fertilizer":[{"Id":8173,"FertilizerId":8173,"Name":"Consultant Fertilizer","Concentration":"0","AcidConcentration":"","ConcentrationUnit":"6","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":false,"Cost":0,"ElementsConcentrations":null}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"129.8343","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"0","K_Val":"394.2857","Ca_Val":"999.2727","Mg_Val":"569.0909","S_Val":null,"B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":null,"Accuracy":{"Name":null,"N_Val":"0%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"0%","K_Val":"0%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":"0%","Fe_Val":"0%","Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":"0%","HCO3_Val":"0%","CO3_Val":"0%","CL_Val":"0%","F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"FriendlyAlerts":{"Alert":[{"Id":92,"AlertId":92,"Message":"Current application of nutrients N, K, Ca, Mg is less than 80% of actual requirement.","Severity":15,"MessageSource":"N, K, Ca, Mg"}]},"IsActive":false,"AlternativeCompoundFertilizers":{"Fertilizer":[]}},{"AcidAlert":{"Alert":[]},"N_FormsAlert":{"Alert":[{"Id":312,"AlertId":312,"Message":"There might be volatilization of nitrogen.","Severity":0,"MessageSource":null}]},"Cost":"0.00","Duration":"30","Recommendation":"Per 30","Id":2,"Name":"s2","FromDate":"2018-07-28T19:41:27","ToDate":"2018-08-26T19:41:27","Ratios":" N-NO3 % =40      NO3:NH4 =1:1.50      N:P =1:2.00      N:K =1:3.00     ","IrrWaterEc":"0","EstimatedIrrWaterEc":"0","TargetValuesEC":"0","TargetValuesEc":"0","SourceWaterEc":"0","IsFeasible":"1","PhIsDisabled":"0","PhIsLow":"0","PhIsUnavailable":"0","PhGoesForTargetPh":"0","IrrWaterPh":"0","IrrWaterHCO3":"0","SelectedFertilizers":{"Fertilizer":[{"Id":8173,"FertilizerId":8173,"Name":"Consultant Fertilizer","Concentration":"729.35","AcidConcentration":"","ConcentrationUnit":"6","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":false,"Cost":0,"ElementsConcentrations":null}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"389.5028","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"72.93508","K_Val":"857.1429","Ca_Val":"1498.909","Mg_Val":"796.7272","S_Val":"0","B_Val":null,"Fe_Val":null,"Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":{"Id":"FertAddition","Name":"FertAddition","N_Val":"36.4675","NO3_Val":"14.587","NH4_Val":"21.8805","NH2_Val":"0","P_Val":"72.935","K_Val":"109.4025","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":"0"},"Accuracy":{"Name":null,"N_Val":"9%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"100%","K_Val":"13%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":null,"Fe_Val":null,"Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"FriendlyAlerts":{"Alert":[{"Id":92,"AlertId":92,"Message":"Current application of nutrients N, K, Ca, Mg is less than 80% of actual requirement.","Severity":15,"MessageSource":"N, K, Ca, Mg"}]},"IsActive":true,"AlternativeCompoundFertilizers":{"Fertilizer":[]}},{"AcidAlert":{"Alert":[]},"N_FormsAlert":{"Alert":[{"Id":312,"AlertId":312,"Message":"There might be volatilization of nitrogen.","Severity":0,"MessageSource":null}]},"Cost":"0.00","Duration":"40","Recommendation":"Per 40","Id":3,"Name":"s3","FromDate":"2018-08-27T19:41:27","ToDate":"2018-10-05T19:41:27","Ratios":" N-NO3 % =40      NO3:NH4 =1:1.50      N:P =1:2.00      N:K =1:3.00     ","IrrWaterEc":"0","EstimatedIrrWaterEc":"0","TargetValuesEC":"0","TargetValuesEc":"0","SourceWaterEc":"0","IsFeasible":"1","PhIsDisabled":"0","PhIsLow":"0","PhIsUnavailable":"0","PhGoesForTargetPh":"0","IrrWaterPh":"0","IrrWaterHCO3":"0","SelectedFertilizers":{"Fertilizer":[{"Id":8173,"FertilizerId":8173,"Name":"Consultant Fertilizer","Concentration":"1411.36","AcidConcentration":"","ConcentrationUnit":"6","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":false,"Cost":0,"ElementsConcentrations":null}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"519.337","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"141.1364","K_Val":"1028.571","Ca_Val":"1748.727","Mg_Val":"910.5455","S_Val":"0","B_Val":null,"Fe_Val":null,"Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":{"Id":"FertAddition","Name":"FertAddition","N_Val":"70.568","NO3_Val":"28.2272","NH4_Val":"42.3408","NH2_Val":"0","P_Val":"141.136","K_Val":"211.704","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":"0"},"Accuracy":{"Name":null,"N_Val":"14%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"100%","K_Val":"21%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":null,"Fe_Val":null,"Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"FriendlyAlerts":{"Alert":[{"Id":92,"AlertId":92,"Message":"Current application of nutrients N, K, Ca, Mg is less than 80% of actual requirement.","Severity":15,"MessageSource":"N, K, Ca, Mg"}]},"IsActive":true,"AlternativeCompoundFertilizers":{"Fertilizer":[]}}],"Success":true,"Message":null,"FertilizerScheduleId":0,"Status":1,"Result":true,"Errors":null,"ErrorNumber":null},"BaseDressingResponse":{"BaseDressingResult":{"N_Val":null,"NO3_Val":null,"NH2_Val":null,"NH4_Val":null,"P_Val":null,"K_Val":null,"Ca_Val":null,"Mg_Val":null,"S_Val":null,"B_Val":null,"Fe_Val":null,"Mn_Val":null,"Zn_Val":null,"Cu_Val":null,"Mo_Val":null,"Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"SelectedFertilizers":{"Fertilizer":[{"Id":11,"FertilizerId":11,"Name":"Potassium Nitrate","Concentration":"0","AcidConcentration":"","ConcentrationUnit":"2","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":true,"Cost":0,"ElementsConcentrations":{"N_Val":13,"NO3_Val":13,"NH2_Val":0,"NH4_Val":0,"P_Val":0,"K_Val":38,"Ca_Val":0,"Mg_Val":0,"S_Val":0,"B_Val":0,"Fe_Val":0,"Mn_Val":0,"Zn_Val":0,"Cu_Val":0,"Mo_Val":0,"Na_Val":0,"HCO3_Val":0,"CO3_Val":0,"CL_Val":0,"F_Val":0,"MicroElementsChelated":0}},{"Id":13,"FertilizerId":13,"Name":"Mono Potassium Phosphate (M.K.P)","Concentration":"428.5714","AcidConcentration":"","ConcentrationUnit":"2","IsLiquid":false,"Order":"2","IsLocked":false,"NotUsed":false,"IsSystemFert":true,"Cost":0,"ElementsConcentrations":{"N_Val":0,"NO3_Val":0,"NH2_Val":0,"NH4_Val":0,"P_Val":22.5,"K_Val":28,"Ca_Val":0,"Mg_Val":0,"S_Val":0,"B_Val":0,"Fe_Val":0,"Mn_Val":0,"Zn_Val":0,"Cu_Val":0,"Mo_Val":0,"Na_Val":0,"HCO3_Val":0,"CO3_Val":0,"CL_Val":0,"F_Val":0,"MicroElementsChelated":0}}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"577.0795","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"124.2","K_Val":"120","Ca_Val":null,"Mg_Val":null,"S_Val":"0","B_Val":null,"Fe_Val":null,"Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":{"Id":"FertAddition","Name":"FertAddition","N_Val":"0","NO3_Val":"0","NH4_Val":"0","NH2_Val":"0","P_Val":"96.42857","K_Val":"120","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":"0"},"ManureAddition":{"Id":null,"Name":null,"N_Val":"0","NO3_Val":"0","NH4_Val":"0","NH2_Val":"0","P_Val":"0","K_Val":"0","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":null},"Accuracy":{"Name":null,"N_Val":"0%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"78%","K_Val":"100%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":"0%","Fe_Val":"0%","Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":"0%","HCO3_Val":"0%","CO3_Val":"0%","CL_Val":"0%","F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"Percentage":{"Id":null,"Name":null,"N_Val":"50","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"40","K_Val":"5","Ca_Val":null,"Mg_Val":null,"S_Val":null,"B_Val":null,"Fe_Val":null,"Mn_Val":null,"Zn_Val":null,"Cu_Val":null,"Mo_Val":null,"Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"Success":true,"CEC":"15","SoilTypeId":"4","plotArea":"12","blockBS":true,"SoilDataExists":true,"Cost":0,"FriendlyAlerts":null},"Status":1,"Result":true,"Errors":null,"ErrorNumber":null}');
+    // reportData: any = JSON.parse('{"ScheduleResponse":{"AcidAlert":{"Alert":[]},"stages":[{"AcidAlert":{"Alert":[]},"N_FormsAlert":{"Alert":[]},"Cost":"0","Duration":"10","Recommendation":"Per 10","Id":1,"Name":"s1","FromDate":"2018-07-18T19:41:27","ToDate":"2018-07-27T19:41:27","Ratios":null,"IrrWaterEc":null,"EstimatedIrrWaterEc":null,"TargetValuesEC":null,"TargetValuesEc":null,"SourceWaterEc":null,"IsFeasible":"0","PhIsDisabled":null,"PhIsLow":null,"PhIsUnavailable":null,"PhGoesForTargetPh":null,"IrrWaterPh":null,"IrrWaterHCO3":null,"SelectedFertilizers":{"Fertilizer":[{"Id":8173,"FertilizerId":8173,"Name":"Consultant Fertilizer","Concentration":"0","AcidConcentration":"","ConcentrationUnit":"6","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":false,"Cost":0,"ElementsConcentrations":null}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"129.8343","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"0","K_Val":"394.2857","Ca_Val":"999.2727","Mg_Val":"569.0909","S_Val":null,"B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":null,"Accuracy":{"Name":null,"N_Val":"0%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"0%","K_Val":"0%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":"0%","Fe_Val":"0%","Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":"0%","HCO3_Val":"0%","CO3_Val":"0%","CL_Val":"0%","F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"FriendlyAlerts":{"Alert":[{"Id":92,"AlertId":92,"Message":"Current application of nutrients N, K, Ca, Mg is less than 80% of actual requirement.","Severity":15,"MessageSource":"N, K, Ca, Mg"}]},"IsActive":false,"AlternativeCompoundFertilizers":{"Fertilizer":[]}},{"AcidAlert":{"Alert":[]},"N_FormsAlert":{"Alert":[{"Id":312,"AlertId":312,"Message":"There might be volatilization of nitrogen.","Severity":0,"MessageSource":null}]},"Cost":"0.00","Duration":"30","Recommendation":"Per 30","Id":2,"Name":"s2","FromDate":"2018-07-28T19:41:27","ToDate":"2018-08-26T19:41:27","Ratios":" N-NO3 % =40      NO3:NH4 =1:1.50      N:P =1:2.00      N:K =1:3.00     ","IrrWaterEc":"0","EstimatedIrrWaterEc":"0","TargetValuesEC":"0","TargetValuesEc":"0","SourceWaterEc":"0","IsFeasible":"1","PhIsDisabled":"0","PhIsLow":"0","PhIsUnavailable":"0","PhGoesForTargetPh":"0","IrrWaterPh":"0","IrrWaterHCO3":"0","SelectedFertilizers":{"Fertilizer":[{"Id":8173,"FertilizerId":8173,"Name":"Consultant Fertilizer","Concentration":"729.35","AcidConcentration":"","ConcentrationUnit":"6","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":false,"Cost":0,"ElementsConcentrations":null}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"389.5028","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"72.93508","K_Val":"857.1429","Ca_Val":"1498.909","Mg_Val":"796.7272","S_Val":"0","B_Val":null,"Fe_Val":null,"Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":{"Id":"FertAddition","Name":"FertAddition","N_Val":"36.4675","NO3_Val":"14.587","NH4_Val":"21.8805","NH2_Val":"0","P_Val":"72.935","K_Val":"109.4025","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":"0"},"Accuracy":{"Name":null,"N_Val":"9%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"100%","K_Val":"13%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":null,"Fe_Val":null,"Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"FriendlyAlerts":{"Alert":[{"Id":92,"AlertId":92,"Message":"Current application of nutrients N, K, Ca, Mg is less than 80% of actual requirement.","Severity":15,"MessageSource":"N, K, Ca, Mg"}]},"IsActive":true,"AlternativeCompoundFertilizers":{"Fertilizer":[]}},{"AcidAlert":{"Alert":[]},"N_FormsAlert":{"Alert":[{"Id":312,"AlertId":312,"Message":"There might be volatilization of nitrogen.","Severity":0,"MessageSource":null}]},"Cost":"0.00","Duration":"40","Recommendation":"Per 40","Id":3,"Name":"s3","FromDate":"2018-08-27T19:41:27","ToDate":"2018-10-05T19:41:27","Ratios":" N-NO3 % =40      NO3:NH4 =1:1.50      N:P =1:2.00      N:K =1:3.00     ","IrrWaterEc":"0","EstimatedIrrWaterEc":"0","TargetValuesEC":"0","TargetValuesEc":"0","SourceWaterEc":"0","IsFeasible":"1","PhIsDisabled":"0","PhIsLow":"0","PhIsUnavailable":"0","PhGoesForTargetPh":"0","IrrWaterPh":"0","IrrWaterHCO3":"0","SelectedFertilizers":{"Fertilizer":[{"Id":8173,"FertilizerId":8173,"Name":"Consultant Fertilizer","Concentration":"1411.36","AcidConcentration":"","ConcentrationUnit":"6","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":false,"Cost":0,"ElementsConcentrations":null}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"519.337","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"141.1364","K_Val":"1028.571","Ca_Val":"1748.727","Mg_Val":"910.5455","S_Val":"0","B_Val":null,"Fe_Val":null,"Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":{"Id":"FertAddition","Name":"FertAddition","N_Val":"70.568","NO3_Val":"28.2272","NH4_Val":"42.3408","NH2_Val":"0","P_Val":"141.136","K_Val":"211.704","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":"0"},"Accuracy":{"Name":null,"N_Val":"14%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"100%","K_Val":"21%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":null,"Fe_Val":null,"Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"FriendlyAlerts":{"Alert":[{"Id":92,"AlertId":92,"Message":"Current application of nutrients N, K, Ca, Mg is less than 80% of actual requirement.","Severity":15,"MessageSource":"N, K, Ca, Mg"}]},"IsActive":true,"AlternativeCompoundFertilizers":{"Fertilizer":[]}}],"Success":true,"Message":null,"FertilizerScheduleId":0,"Status":1,"Result":true,"Errors":null,"ErrorNumber":null},"BaseDressingResponse":{"BaseDressingResult":{"N_Val":null,"NO3_Val":null,"NH2_Val":null,"NH4_Val":null,"P_Val":null,"K_Val":null,"Ca_Val":null,"Mg_Val":null,"S_Val":null,"B_Val":null,"Fe_Val":null,"Mn_Val":null,"Zn_Val":null,"Cu_Val":null,"Mo_Val":null,"Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"SelectedFertilizers":{"Fertilizer":[{"Id":11,"FertilizerId":11,"Name":"Potassium Nitrate","Concentration":"0","AcidConcentration":"","ConcentrationUnit":"2","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":true,"Cost":0,"ElementsConcentrations":{"N_Val":13,"NO3_Val":13,"NH2_Val":0,"NH4_Val":0,"P_Val":0,"K_Val":38,"Ca_Val":0,"Mg_Val":0,"S_Val":0,"B_Val":0,"Fe_Val":0,"Mn_Val":0,"Zn_Val":0,"Cu_Val":0,"Mo_Val":0,"Na_Val":0,"HCO3_Val":0,"CO3_Val":0,"CL_Val":0,"F_Val":0,"MicroElementsChelated":0}},{"Id":13,"FertilizerId":13,"Name":"Mono Potassium Phosphate (M.K.P)","Concentration":"428.5714","AcidConcentration":"","ConcentrationUnit":"2","IsLiquid":false,"Order":"2","IsLocked":false,"NotUsed":false,"IsSystemFert":true,"Cost":0,"ElementsConcentrations":{"N_Val":0,"NO3_Val":0,"NH2_Val":0,"NH4_Val":0,"P_Val":22.5,"K_Val":28,"Ca_Val":0,"Mg_Val":0,"S_Val":0,"B_Val":0,"Fe_Val":0,"Mn_Val":0,"Zn_Val":0,"Cu_Val":0,"Mo_Val":0,"Na_Val":0,"HCO3_Val":0,"CO3_Val":0,"CL_Val":0,"F_Val":0,"MicroElementsChelated":0}}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"577.0795","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"124.2","K_Val":"120","Ca_Val":null,"Mg_Val":null,"S_Val":"0","B_Val":null,"Fe_Val":null,"Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":{"Id":"FertAddition","Name":"FertAddition","N_Val":"0","NO3_Val":"0","NH4_Val":"0","NH2_Val":"0","P_Val":"96.42857","K_Val":"120","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":"0"},"ManureAddition":{"Id":null,"Name":null,"N_Val":"0","NO3_Val":"0","NH4_Val":"0","NH2_Val":"0","P_Val":"0","K_Val":"0","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":null},"Accuracy":{"Name":null,"N_Val":"0%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"78%","K_Val":"100%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":"0%","Fe_Val":"0%","Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":"0%","HCO3_Val":"0%","CO3_Val":"0%","CL_Val":"0%","F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"Percentage":{"Id":null,"Name":null,"N_Val":"50","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"40","K_Val":"5","Ca_Val":null,"Mg_Val":null,"S_Val":null,"B_Val":null,"Fe_Val":null,"Mn_Val":null,"Zn_Val":null,"Cu_Val":null,"Mo_Val":null,"Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"Success":true,"CEC":"15","SoilTypeId":"4","plotArea":"12","blockBS":true,"SoilDataExists":true,"Cost":0,"FriendlyAlerts":null},"Status":1,"Result":true,"Errors":null,"ErrorNumber":null}');
     constructor(private service: SoilService, private fb: FormBuilder, private route: ActivatedRoute,
         private router: Router, private messageService: MessageService) {
         this.stepIndex = 0;
-        var url_string = window.location.href;
-        var url = new URL(url_string);
-        this.payUrl = url.searchParams.get("credit_card_processed");
+        const url_string = window.location.href;
+        const url = new URL(url_string);
+        this.payUrl = url.searchParams.get('credit_card_processed');
         if (this.payUrl == null) {
             this.router.navigate['/'];
         } else {
             if (this.payUrl == 'Y') {
-                let urlS = url_string.split('?');
-                history.pushState(url_string,null,urlS[0]);
+                const urlS = url_string.split('?');
+                history.pushState(url_string, null, urlS[0]);
                 this.isPay = true;
                 this.stepIndex = 4;
-                this.form1 = JSON.parse(localStorage.getItem("form1"));
-                this.form2 = JSON.parse(localStorage.getItem("form2"));
-                this.form3 = JSON.parse(localStorage.getItem("form3"));
-                this.cropId = JSON.parse(localStorage.getItem("cropid"));
-                this.convertData = JSON.parse(localStorage.getItem("convert"));
-                this.convertFinal = JSON.parse(localStorage.getItem("convertFinal"));
-                this.sf = JSON.parse(localStorage.getItem("salesforce"));
+                this.form1 = JSON.parse(localStorage.getItem('form1'));
+                this.form2 = JSON.parse(localStorage.getItem('form2'));
+                this.form3 = JSON.parse(localStorage.getItem('form3'));
+                this.cropId = JSON.parse(localStorage.getItem('cropid'));
+                this.convertData = JSON.parse(localStorage.getItem('convert'));
+                this.convertFinal = JSON.parse(localStorage.getItem('convertFinal'));
+                this.sf = JSON.parse(localStorage.getItem('salesforce'));
                 if (this.form1) {
                     this.service.updateSF(this.sf, this.form2.cropName)
                         .subscribe(data => {
@@ -158,7 +162,7 @@ export class WizardFormsComponent implements OnInit {
                             }
                             this.alldata.push(this.cropNE);
                         }
-                        //this.alldata = this.alldata.sort();
+                        // this.alldata = this.alldata.sort();
                     })
             })
 
@@ -183,7 +187,7 @@ export class WizardFormsComponent implements OnInit {
             cardName: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
         });
         this.allcrops = this.crops;
-        var s = document.createElement("script");
+        const s = document.createElement('script');
         s.src = 'https://www.2checkout.com/static/checkout/javascript/direct.min.js';
         document.querySelector('body').appendChild(s);
         this.step1Form = new FormGroup({
@@ -200,7 +204,7 @@ export class WizardFormsComponent implements OnInit {
                 Validators.required
             ]),
         });
-        //this.step1Form.controls['country'].setValue('Afghanistan', { onlySelf: true });
+        // this.step1Form.controls['country'].setValue('Afghanistan', { onlySelf: true });
 
         this.step2Form = new FormGroup({
             cropName: new FormControl('', [
@@ -280,7 +284,7 @@ export class WizardFormsComponent implements OnInit {
             nutrient: ['1', Validators.required],
             nutrientUnit: ['ppm', Validators.required],
             extMethod: ['1', Validators.required],
-            value: ['',],
+            value: ['', ],
         });
     }
 
@@ -305,7 +309,7 @@ export class WizardFormsComponent implements OnInit {
                         }
                     });
             });
-        localStorage.setItem("cropid", JSON.stringify(this.cropId));
+        localStorage.setItem('cropid', JSON.stringify(this.cropId));
     }
 
     changeText2(event) {
@@ -323,23 +327,23 @@ export class WizardFormsComponent implements OnInit {
 
     step1() {
         this.form1 = this.step1Form.value;
-        localStorage.setItem("form1", JSON.stringify(this.form1));
+        localStorage.setItem('form1', JSON.stringify(this.form1));
         this.service.signupSF(this.form1)
             .subscribe(data => {
-                localStorage.setItem("salesforce", JSON.stringify(data));
+                localStorage.setItem('salesforce', JSON.stringify(data));
             });
     }
     step2() {
         this.form2 = this.step2Form.value;
-        localStorage.setItem("form2", JSON.stringify(this.form2));
+        localStorage.setItem('form2', JSON.stringify(this.form2));
     }
     step3() {
         this.form3 = this.step3Form.value;
         this.convertData = [];
         this.isConvert = true;
         for (let i = 0; i < this.form3.nutrientData.length; i++) {
-            let fill = this.alldata[i];
-            //localStorage.removeItem("covert");
+            const fill = this.alldata[i];
+            // localStorage.removeItem("covert");
 
             for (let j = 0; j < fill.nutrients.length; j++) {
                 if (fill.nutrients[j].value.id == this.form3.nutrientData[i].nutrient) {
@@ -363,14 +367,14 @@ export class WizardFormsComponent implements OnInit {
                     }
                     this.convertData.push(data);
                     this.convertFinal.push(nur);
-                    localStorage.setItem("convertFinal", JSON.stringify(this.convertFinal));
-                    localStorage.setItem("convert", JSON.stringify(this.convertData));
+                    localStorage.setItem('convertFinal', JSON.stringify(this.convertFinal));
+                    localStorage.setItem('convert', JSON.stringify(this.convertData));
                 });
             if ((this.form3.nutrientData.length - 1) == i) {
                 this.isConvert = false;
             }
         }
-        localStorage.setItem("form3", JSON.stringify(this.form3));
+        localStorage.setItem('form3', JSON.stringify(this.form3));
     }
 
     getReport() {
@@ -404,6 +408,7 @@ export class WizardFormsComponent implements OnInit {
 
                                 }
                                 this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Report Generated Successfully' });
+                                this.isReportPage = false;
                             });
                     }, error => {
                         this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
@@ -414,7 +419,7 @@ export class WizardFormsComponent implements OnInit {
 
     changed() {
         this.DropdownVar = 2;
-        (this.step2Form.controls["cropName"] as FormControl).valueChanges.subscribe(value => {
+        (this.step2Form.controls['cropName'] as FormControl).valueChanges.subscribe(value => {
             if (value) {
                 this.crops = [];
                 for (let i = 0; i < this.alpha.length; i++) {
@@ -442,7 +447,7 @@ export class WizardFormsComponent implements OnInit {
                         this.crops.push(this.crop);
                     }
                 }
-                //this.crops = this.crops.filter(a => a.alpha == value.toString().toUpperCase().charAt(0));
+                // this.crops = this.crops.filter(a => a.alpha == value.toString().toUpperCase().charAt(0));
             } else {
                 this.crops = this.allcrops;
             }
@@ -457,20 +462,20 @@ export class WizardFormsComponent implements OnInit {
             if (this.form3.nutrientData[i].value > 0 && this.form3.nutrientData[i].value != null) {
                 this.isNutrient = false;
                 break;
-            }
-            else
+            } else {
                 this.isNutrient = true;
+            }
         }
     }
 
     captureScreen() {
-        //return xepOnline.Formatter.Format(document.getElementById('contentToConvert'), { render: 'download' })
-        //var pdf = new jspdf('p', 'mm', 'a4');
-        var data = document.getElementById('contentToConvert');
+        // return xepOnline.Formatter.Format(document.getElementById('contentToConvert'), { render: 'download' })
+        // var pdf = new jspdf('p', 'mm', 'a4');
+        const data = document.getElementById('contentToConvert');
         // let margins = { top: 10, bottom: 10, left: 10, right: 10 };
         // let d = new Date();
         // pdf.addHTML(data, function () {
-        //     pdf.save('FertilizerSchedule_' + d + '.pdf'); // Generated PDF   
+        //     pdf.save('FertilizerSchedule_' + d + '.pdf'); // Generated PDF
         // });
 
         // let doc = new jspdf('p', 'mm', 'a4');
@@ -485,16 +490,16 @@ export class WizardFormsComponent implements OnInit {
         // doc.addPage();
         // doc.save('Test.pdf');
         html2canvas(data).then(canvas => {
-            // Few necessary setting options  
-            var imgWidth = 190;
-            var pageHeight = 250;
-            var imgHeight = canvas.height * imgWidth / canvas.width;
-            var heightLeft = imgHeight;
+            // Few necessary setting options
+            const imgWidth = 190;
+            const pageHeight = 250;
+            const imgHeight = canvas.height * imgWidth / canvas.width;
+            let heightLeft = imgHeight;
 
             const contentDataURL = canvas.toDataURL('image/jpeg')
-            let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
-            let d = new Date();
-            var position = 10;
+            const pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
+            const d = new Date();
+            let position = 10;
             pdf.addImage(contentDataURL, 'JPEG', 10, position, imgWidth, imgHeight);
             heightLeft -= pageHeight;
 
@@ -504,29 +509,39 @@ export class WizardFormsComponent implements OnInit {
                 pdf.addImage(contentDataURL, 'JPEG', 10, position, imgWidth, imgHeight);
                 heightLeft -= pageHeight;
             }
-            pdf.save('FertilizerSchedule_' + d + '.pdf'); // Generated PDF   
+            pdf.save('FertilizerSchedule_' + d + '.pdf'); // Generated PDF
         });
 
     }
 
     getBase64Image(img) {
-        var canvas = document.createElement("canvas");
+        const canvas = document.createElement('canvas');
         canvas.width = img.width;
         canvas.height = img.height;
-        var ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0);
-        var dataURL = canvas.toDataURL("image/png");
+        const dataURL = canvas.toDataURL('image/png');
         return dataURL;
     }
 
     scrolltoTop(id) {
         this.stepIndex = id;
-        if (this.stepIndex != 0)
-		{
+        if (this.stepIndex !== 0) {
             this.isText = false;
-		}
-        else
+            this.isStep5 = false;
+          this.isReportPage = false;
+          this.firstPage = true;
+
+        } else {
             this.isText = true;
+          this.isStep5 = false;
+
+        }
+        if (this.stepIndex === 4)
+        {
+          this.isReportPage = true;
+          this.firstPage = false;
+        }
         window.scrollTo(0, 0);
     }
 }
