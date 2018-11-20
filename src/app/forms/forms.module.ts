@@ -34,7 +34,13 @@ import { ArchwizardModule } from 'angular-archwizard';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { GrowlModule } from 'primeng/growl';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
+export function translateHttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
     imports: [
         NgbModule,
@@ -59,8 +65,17 @@ import { GrowlModule } from 'primeng/growl';
         FormsModule,
         NGXFormWizardModule,
         CustomFormsModule,
-        MatchHeightModule
-        
+        MatchHeightModule,
+      // configure the imports
+      HttpClientModule,
+      TranslateModule.forRoot({
+        loader: {
+          provide: TranslateLoader,
+          useFactory: translateHttpLoaderFactory,
+          deps: [HttpClient]
+        }
+      })
+
 
     ],
     declarations: [
@@ -76,7 +91,8 @@ import { GrowlModule } from 'primeng/growl';
         InputsComponent,
         InputGroupsComponent,
         InputGridComponent
-    ]
+    ],
+   providers: []
 
 })
 export class FormModule { }

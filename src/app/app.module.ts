@@ -1,3 +1,4 @@
+import {BrowserModule} from '@angular/platform-browser';
 
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,9 +27,9 @@ import * as $ from 'jquery';
 
 
 
-export function createTranslateLoader(http: HttpClient) {
-    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-  }
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
+}
 
 @NgModule({
     declarations: [
@@ -38,6 +39,7 @@ export function createTranslateLoader(http: HttpClient) {
         ContentLayoutComponent
     ],
     imports: [
+      BrowserModule,
         BrowserAnimationsModule,
         StoreModule.forRoot({}),
         AppRoutingModule,
@@ -48,7 +50,7 @@ export function createTranslateLoader(http: HttpClient) {
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
-                useFactory: (createTranslateLoader),
+                useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
               }
         }),

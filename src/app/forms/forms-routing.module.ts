@@ -12,6 +12,9 @@ import { StripedRowsComponent } from './layouts/striped-rows/striped-rows.compon
 import { InputsComponent } from './elements/inputs/inputs.component';
 import { InputGroupsComponent } from './elements/input-groups/input-groups.component';
 import { InputGridComponent } from './elements/input-grid/input-grid.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 const routes: Routes = [
   {

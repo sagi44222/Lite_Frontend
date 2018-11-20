@@ -1,4 +1,6 @@
 <!-- Wizard Starts -->
+
+<script src="../../../../../../lite_frontend2/src/app/forms/forms.module.ts"></script>
 <p-growl [(value)]="msgs"></p-growl>
 
 <div style="height: 23px; background: #6f9c40;"></div>
@@ -12,7 +14,11 @@
       </a>
     </div>
     <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="firstPage">GET YOUR FERTILIZER PLAN</span></h1>
-    <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="isReportPage">Congratulations, your report is on its way!</span></h1>
+    <h1 translate>Title</h1>
+
+    <button (click)="switchLanguage('en')">English</button>
+
+    <button (click)="switchLanguage('es')">Spanish</button>
     <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="reportData">Report is ready.</span></h1>
     <h1 class="content-header" class="htitle"><span *ngIf="isText">in under 15 minutes, for only $79</span> </h1>
     <p class="hstitle"><span *ngIf="isText"> {{tname}}
