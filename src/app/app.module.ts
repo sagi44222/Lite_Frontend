@@ -9,8 +9,8 @@ import { SharedModule } from "./shared/shared.module";
 import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { AgmCoreModule } from '@agm/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+//import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+//import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
@@ -27,9 +27,9 @@ import * as $ from 'jquery';
 
 
 
-export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
-  return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
-}
+//export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+ // return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
+//}
 
 @NgModule({
     declarations: [
@@ -47,17 +47,17 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         HttpClientModule,
         ToastModule.forRoot(),
         NgbModule.forRoot(),
-        TranslateModule.forRoot({
+  /*      TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
               }
-        }),
+       }),*/
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyBr5_picK8YJK7fFR2CPzTVMj6GG1TtRGo'
         })
-        
+
     ],
     providers: [
         //Toastr and auth providers

@@ -3,7 +3,17 @@
 <script src="../../../../../../lite_frontend2/src/app/forms/forms.module.ts"></script>
 <p-growl [(value)]="msgs"></p-growl>
 
-<div style="height: 23px; background: #6f9c40;"></div>
+<div style="height: 23px; background: #6f9c40;" >
+  <!--
+  <h1><span>
+    <select class="form-control" (change)="switchLanguage($event.target.value)">
+      <option>en</option>
+      <option>es</option>
+    </select>
+    </span>
+  </h1>
+  -->
+  </div>
 <div class="row">
   <div class="col-sm-12" style="padding:0 10%;">
     <div style="height:100px;">
@@ -14,11 +24,8 @@
       </a>
     </div>
     <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="firstPage">GET YOUR FERTILIZER PLAN</span></h1>
-    <h1 translate>Title</h1>
+    <!--<h1 translate>Title</h1>-->
 
-    <button (click)="switchLanguage('en')">English</button>
-
-    <button (click)="switchLanguage('es')">Spanish</button>
     <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="reportData">Report is ready.</span></h1>
     <h1 class="content-header" class="htitle"><span *ngIf="isText">in under 15 minutes, for only $79</span> </h1>
     <p class="hstitle"><span *ngIf="isText"> {{tname}}
@@ -441,8 +448,10 @@
                       <div class="col-md-2">
                         <div class="form-group">
                           <span class="form-group has-float-label">
-                            <select class="form-control custom-select minimal" name="plotSizeUnit" formControlName="plotSizeUnit">
-                              <option value="Hectare">Hectare (ha)</option>
+                            <select class="form-control custom-select minimal" name="plotSizeUnit"
+                                    formControlName="plotSizeUnit" [(ngModel)]="defaultUnit">
+                              <option [value]="''">-- Select unit --</option>
+                              <option value="Hectare" >Hectare (ha)</option>
                               <option value="Acre">Acre (ac)</option>
                             </select>
                             <span>Unit</span>
@@ -461,7 +470,6 @@
                             <span>Average yield</span>
                             <input class="form-control" type="number" min="0" placeholder="Average yield" name="averageYield"
                               formControlName="averageYield">
-
                             <small *ngIf="step2Form.controls['averageYield'].hasError('required') && step2Form.controls['averageYield'].touched"
                               class="font-small-1 text-danger">
                               Average yield is required
@@ -472,8 +480,9 @@
                       <div class="col-md-2">
                         <div class="form-group">
                           <span class="form-group has-float-label">
-                            <select class="form-control custom-select minimal" name="averageYieldUnit" formControlName="averageYieldUnit">
-                              <option value="mt/Hectare">mt/ha</option>
+                            <select class="form-control custom-select minimal" name="averageYieldUnit" formControlName="averageYieldUnit" [(ngModel)]="defaultAverageYieldUnit">
+                              <option [value]="''">-- Select unit --</option>
+                              <option value="mt/Hectare" selected="selected">mt/ha</option>
                               <option value="ton/Acre">ton/ac</option>
                             </select>
                             <span>Unit</span>
@@ -519,8 +528,9 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <span class="form-group has-float-label">
-                            <select class="form-control custom-select minimal" name="texture" formControlName="texture">
-                              <option value="Sandy">Sandy</option>
+                            <select class="form-control custom-select minimal" name="texture" formControlName="texture" [(ngModel)]="defaultSoilTexture">
+                              <option [value]="''">-- Select soil texture --</option>
+                              <option value="Sandy" selected="selected">Sandy</option>
                               <option value="Sandy Loam">Sandy Loam</option>
                               <option value="Silt">Silt</option>
                               <option value="Silt Loam">Silt Loam</option>
@@ -864,7 +874,7 @@
                           </tr>
                           <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
                             <td *ngIf="fer?.Concentration != 0">{{fer?.Name}}</td>
-                            <td *ngIf="fer?.Concentration != 0">{{fer?.Concentration | number:'1.0-0'}}</td>
+                            <td *ngIf="fer?.Concentration != 0">{{fer?.Concentration | number:'1.2-2'}}</td>
                             <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
                             <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
                             <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
@@ -884,7 +894,7 @@
                         <tbody *ngFor="let item of reportData?.ScheduleResponse?.stages">
                           <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
                             <td *ngIf="fer?.Concentration != 0">{{fer?.Name}}</td>
-                            <td *ngIf="fer?.Concentration != 0">{{fer?.Concentration | number:'1.0-0'}}</td>
+                            <td *ngIf="fer?.Concentration != 0">{{fer?.Concentration | number:'1.2-2'}}</td>
                             <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
                             <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
                             <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
@@ -914,21 +924,21 @@
                         </tr>
                         <tr *ngFor="let item of reportData?.ScheduleResponse?.stages">
                           <td>{{item?.Name}}</td>
-                          <td>{{item?.FertAddition?.N_Val ? (item?.FertAddition?.N_Val | number:'1.0-0') : 0 }}</td>
-                          <td>{{item?.FertAddition?.N_Val / item?.Duration | number:'1.0-0'}}</td>
-                          <td>{{item?.FertAddition?.P_Val ? (item?.FertAddition?.P_Val | number:'1.0-0' ) : 0 }}</td>
-                          <td>{{item?.FertAddition?.P_Val / item?.Duration | number:'1.0-0'}}</td>
-                          <td>{{item?.FertAddition?.K_Val ? (item?.FertAddition?.K_Val | number:'1.0-0') : 0 }}</td>
-                          <td>{{item?.FertAddition?.K_Val / item?.Duration | number:'1.0-0'}}</td>
+                          <td>{{item?.FertAddition?.N_Val ? (item?.FertAddition?.N_Val | number:'1.2-2') : 0 }}</td>
+                          <td>{{item?.FertAddition?.N_Val / item?.Duration | number:'1.2-2'}}</td>
+                          <td>{{item?.FertAddition?.P_Val ? (item?.FertAddition?.P_Val | number:'1.2-2' ) : 0 }}</td>
+                          <td>{{item?.FertAddition?.P_Val / item?.Duration | number:'1.2-2'}}</td>
+                          <td>{{item?.FertAddition?.K_Val ? (item?.FertAddition?.K_Val | number:'1.2-2') : 0 }}</td>
+                          <td>{{item?.FertAddition?.K_Val / item?.Duration | number:'1.2-2'}}</td>
                         </tr>
                         <tr>
                           <th>Total</th>
-                          <td>{{getSum('N') | number:'1.0-0'}}</td>
-                          <td>{{getSum('n') | number:'1.0-0'}}</td>
-                          <td>{{getSum('P') | number:'1.0-0'}}</td>
-                          <td>{{getSum('p') | number:'1.0-0'}}</td>
-                          <td>{{getSum('K') | number:'1.0-0'}}</td>
-                          <td>{{getSum('k') | number:'1.0-0'}}</td>
+                          <td>{{getSum('N') | number:'1.2-2'}}</td>
+                          <td>{{getSum('n') | number:'1.2-2'}}</td>
+                          <td>{{getSum('P') | number:'1.2-2'}}</td>
+                          <td>{{getSum('p') | number:'1.2-2'}}</td>
+                          <td>{{getSum('K') | number:'1.2-2'}}</td>
+                          <td>{{getSum('k') | number:'1.2-2'}}</td>
                         </tr>
                       </table>
 
