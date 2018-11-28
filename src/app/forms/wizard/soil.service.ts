@@ -102,6 +102,22 @@ export class SoilService {
     });
   }
 
+  postTemp(payload) {
+    // const body = JSON.stringify({
+    // })
+    let headers = new HttpHeaders();
+    headers = headers.set('content-Type', 'application/json;charset=utf-8');
+    return Observable.create((observer) => {
+      return this._http.post('https://litebackendprod.herokuapp.com/api/recommandation/', payload, { headers: headers })
+        .subscribe(data => {
+          observer.next(data);
+        },
+          err => {
+            console.error(err);
+          });
+    });
+  }
+
   postValidateToken(userid, token) {
     const body = JSON.stringify({
       "userId": userid,

@@ -32,6 +32,10 @@
       <strong>{{tnameStrong}}</strong>
       <br> With more than 250 crops available, this is your gateway to precise and more successful farming!</span></p>
     <span *ngIf="isStep5"> Ursula;'s text here.</span>
+  
+      <!-- <br>
+      <button style="float:right;" class="btn btn-custom" (click)="captureScreen(reportData)">
+        <i class="fa fa-download"></i> PDF</button> -->
   </div>
 </div>
 
@@ -46,7 +50,7 @@
               <form [formGroup]="step1Form" (ngSubmit)="step1()">
                 <div class="row">
                   <div class="col-md-6">
-				  <br>
+                    <br>
                     <h4 class="fgreen">Let's get started</h4>
                     <div class="row">
                       <div class="col-md-6">
@@ -343,7 +347,7 @@
               <form [formGroup]="step2Form" (ngSubmit)="step2()">
                 <div class="row">
                   <div class="col-md-12">
-				  <br>
+                    <br>
                     <h4 class="fgreen">Tell us about your crops</h4>
                     <div class="row">
                       <div class="col-md-6">
@@ -482,9 +486,9 @@
                           <span class="form-group has-float-label">
                             <select class="form-control custom-select minimal" name="averageYieldUnit" formControlName="averageYieldUnit" [(ngModel)]="defaultAverageYieldUnit">
                               <option [value]="''">-- Select unit --</option>
-                              <option value="mt/Hectare" selected="selected">mt/ha</option>
-                              <option value="ton/Acre">ton/ac</option>
-                            </select>
+                            <option value="mt/Hectare" selected="selected">mt/ha</option>
+                            <option value="ton/Acre">ton/ac</option>
+                          </select>
                             <span>Unit</span>
                             <small *ngIf="step2Form.controls['averageYieldUnit'].hasError('required') && step2Form.controls['averageYieldUnit'].touched"
                               class="font-small-1 text-danger">
@@ -520,7 +524,7 @@
               <form [formGroup]="step3Form" (ngSubmit)="step3()">
                 <div class="row">
                   <div class="col-md-12">
-				  <br>
+                    <br>
                     <h4 class="fgreen">Your soil composition and fertility. Now your latest soil test is required.</h4>
                   </div>
                   <div class="col-md-12">
@@ -680,12 +684,12 @@
             <aw-wizard-step stepTitle="Step 4" (stepEnter)="scrolltoTop(3)">
               <div class="row">
                 <div class="col-md-12">
-				<br>
-                  <h4 class="fgreen">Carefully check your details</h4>
+                  <br>
+        <h4 class="fgreen">Carefully check your details</h4>
                 </div>
                 <div class="col-md-12">
-					<p style="color:#647163;">Please take a moment to check the data you entered. Once you click "Get Report", SMART Lite will use this data set to create your fertilizer plan.
-				  </p>
+                  <p style="color:#647163;">Please take a moment to check the data you entered. Once you click "Get Report", SMART Lite will use this data set to create your fertilizer plan.
+                  </p>
                 </div>
                 <div class="col-md-12">
                   <div class="row">
