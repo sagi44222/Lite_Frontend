@@ -803,7 +803,7 @@
               </div>
               <div class="row" *ngIf="reportData">
                 <div class="col-md-12" *ngIf="reportData.ScheduleResponse" >
-                  <button style="float:right;" class="btn btn-custom" (click)="captureScreen()">
+                  <button style="float:right;" class="btn btn-custom" (click)="captureScreen(reportData)">
                     <i class="fa fa-download"></i> PDF</button>
                 </div>
 
@@ -942,7 +942,7 @@
                         </tr>
                         <tr>
                           <th>Total</th>
-                          <td>{{getSum('N') | number:'1.2-2'}}</td>
+                          <td >{{getSum('N') | number:'1.2-2'}}</td>
                           <td>{{getSum('n') | number:'1.2-2'}}</td>
                           <td>{{getSum('P') | number:'1.2-2'}}</td>
                           <td>{{getSum('p') | number:'1.2-2'}}</td>
