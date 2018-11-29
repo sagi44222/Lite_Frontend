@@ -320,7 +320,8 @@ unitesData: any[] = [];
                         if (data1) {
                             this.varietyData = data1.Varieties.Variety;
                             this.step2Form.controls['variety'].enable();
-                            this.step2Form.controls['specifics'].enable();
+                          this.step2Form.controls['variety'].setValue("");
+                          this.step2Form.controls['specifics'].enable();
                             this.soilType = data1.Varieties.Variety[0].SoilTypes.SoilType;
                         }
                     });

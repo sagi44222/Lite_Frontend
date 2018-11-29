@@ -405,7 +405,7 @@
                           <span class="form-group has-float-label">
                             <select class="form-control custom-select minimal" name="variety" formControlName="variety"
                               (change)="changeText2($event.target.value)">
-                              <option value="">-- Select Variety --</option>
+                              <option selected value="">-- Select Variety --</option>
                               <option *ngFor="let item of varietyData" value="{{item.Id}}">{{item.Name}}</option>
                             </select>
                             <span>Crop variety</span>
