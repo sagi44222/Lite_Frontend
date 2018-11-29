@@ -858,7 +858,7 @@ unitesData: any[] = [];
         doc.save('FertilizerSchedule_' + d + '.pdf'); // Generated PDF
     }
 
-    captureScreen(reportData) {
+    captureScreen(reportData = null) {
         if (reportData != null) {
             this.BuildPDFbySelf(reportData.ScheduleResponse.stages);
         } else {

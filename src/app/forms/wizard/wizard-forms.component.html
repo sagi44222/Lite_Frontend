@@ -13,7 +13,7 @@
     </span>
   </h1>
   -->
-  </div>
+</div>
 <div class="row">
   <div class="col-sm-12" style="padding:0 10%;">
     <div style="height:100px;">
@@ -29,11 +29,11 @@
     <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="reportData">Report is ready.</span></h1>
     <h1 class="content-header" class="htitle"><span *ngIf="isText">in under 15 minutes, for only $79</span> </h1>
     <p class="hstitle"><span *ngIf="isText"> {{tname}}
-      <strong>{{tnameStrong}}</strong>
-      <br> With more than 250 crops available, this is your gateway to precise and more successful farming!</span></p>
+        <strong>{{tnameStrong}}</strong>
+        <br> With more than 250 crops available, this is your gateway to precise and more successful farming!</span></p>
     <span *ngIf="isStep5"> Ursula;'s text here.</span>
-  
-      <!-- <br>
+
+    <!-- <br>
       <button style="float:right;" class="btn btn-custom" (click)="captureScreen(reportData)">
         <i class="fa fa-download"></i> PDF</button> -->
   </div>
@@ -320,9 +320,9 @@
                     <p class="bultext">
                       <i class="fa fa-asterisk">
                       </i>
-                      The fertilizer plan provided will show you the amount of fertilizers needed for 1 ha/1ac. 
+                      The fertilizer plan provided will show you the amount of fertilizers needed for 1 ha/1ac.
 
-					  <a style="border-bottom: 1px solid;font-style: italic;" href="#">Here you can see an example fertilizer plan</a>.
+                      <a style="border-bottom: 1px solid;font-style: italic;" href="#">Here you can see an example fertilizer plan</a>.
                     </p>
                     <p class="bultext">
                       <i class="fa fa-asterisk"> </i>                       Smart light deliver fertilizer plans for all soil-grown crops. If you are growing Hydropnics, check out our 
@@ -452,12 +452,12 @@
                       <div class="col-md-2">
                         <div class="form-group">
                           <span class="form-group has-float-label">
-                            <select class="form-control custom-select minimal" name="plotSizeUnit"
-                                    formControlName="plotSizeUnit" [(ngModel)]="defaultUnit">
-                              <option [value]="''">-- Select unit --</option>
-                              <option value="Hectare" >Hectare (ha)</option>
-                              <option value="Acre">Acre (ac)</option>
-                            </select>
+                              <select class="form-control custom-select minimal" name="plotSizeUnit"
+                              formControlName="plotSizeUnit" [(ngModel)]="defaultUnit">
+                        <option [value]="''">-- Select unit --</option>
+                        <option value="Hectare" >Hectare (ha)</option>
+                        <option value="Acre">Acre (ac)</option>
+                      </select>
                             <span>Unit</span>
                             <small *ngIf="step2Form.controls['plotSizeUnit'].hasError('required') && step2Form.controls['plotSizeUnit'].touched"
                               class="font-small-1 text-danger">
@@ -484,11 +484,11 @@
                       <div class="col-md-2">
                         <div class="form-group">
                           <span class="form-group has-float-label">
-                            <select class="form-control custom-select minimal" name="averageYieldUnit" formControlName="averageYieldUnit" [(ngModel)]="defaultAverageYieldUnit">
-                              <option [value]="''">-- Select unit --</option>
-                            <option value="mt/Hectare" selected="selected">mt/ha</option>
-                            <option value="ton/Acre">ton/ac</option>
-                          </select>
+                              <select class="form-control custom-select minimal" name="averageYieldUnit" formControlName="averageYieldUnit" [(ngModel)]="defaultAverageYieldUnit">
+                                  <option [value]="''">-- Select unit --</option>
+                              <option value="mt/Hectare" selected="selected">mt/ha</option>
+                              <option value="ton/Acre">ton/ac</option>
+                            </select>
                             <span>Unit</span>
                             <small *ngIf="step2Form.controls['averageYieldUnit'].hasError('required') && step2Form.controls['averageYieldUnit'].touched"
                               class="font-small-1 text-danger">
@@ -506,8 +506,8 @@
                               </i>
                             </td>
                             <td>
-                              If this is your first year growing this crop and you have no average yield from previous years,
-                              please lookup average yields in your area.
+                                If this is your first year growing this crop and you have no average yield from previous years,
+                                please lookup average yields in your area.
                             </td>
                           </tr>
                         </table>
@@ -532,8 +532,8 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <span class="form-group has-float-label">
-                            <select class="form-control custom-select minimal" name="texture" formControlName="texture" [(ngModel)]="defaultSoilTexture">
-                              <option [value]="''">-- Select soil texture --</option>
+                              <select class="form-control custom-select minimal" name="texture" formControlName="texture" [(ngModel)]="defaultSoilTexture">
+                                  <option [value]="''">-- Select soil texture --</option>
                               <option value="Sandy" selected="selected">Sandy</option>
                               <option value="Sandy Loam">Sandy Loam</option>
                               <option value="Silt">Silt</option>
@@ -685,11 +685,11 @@
               <div class="row">
                 <div class="col-md-12">
                   <br>
-        <h4 class="fgreen">Carefully check your details</h4>
+                  <h4 class="fgreen">Carefully check your details</h4>
                 </div>
                 <div class="col-md-12">
-                  <p style="color:#647163;">Please take a moment to check the data you entered. Once you click "Get Report", SMART Lite will use this data set to create your fertilizer plan.
-                  </p>
+                    <p style="color:#647163;">Please take a moment to check the data you entered. Once you click "Get Report", SMART Lite will use this data set to create your fertilizer plan.
+                      </p>
                 </div>
                 <div class="col-md-12">
                   <div class="row">
@@ -802,10 +802,10 @@
                 </div>
               </div>
               <div class="row" *ngIf="reportData">
-                <div class="col-md-12" *ngIf="reportData.ScheduleResponse" >
-                  <button style="float:right;" class="btn btn-custom" (click)="captureScreen(reportData)">
-                    <i class="fa fa-download"></i> PDF</button>
-                </div>
+                  <div class="col-md-12" *ngIf="reportData.ScheduleResponse" >
+                      <button style="float:right;" class="btn btn-custom" (click)="captureScreen(reportData)">
+                        <i class="fa fa-download"></i> PDF</button>
+                    </div>
 
               </div>
               <div class="row" *ngIf="reportData" #contentToConvert id="contentToConvert">
@@ -863,7 +863,7 @@
                       <div *ngFor="let item of reportData?.ScheduleResponse?.stages">
                         <p>
                           <span style="float: left;vertical-align: middle;color: #3e8e41;">
-                            <i  class="ft-chevron-right"></i> {{item.Name}}
+                            <i class="ft-chevron-right"></i> {{item.Name}}
                           </span>
                           <span style="float: right;">
                             Duration :
@@ -942,7 +942,7 @@
                         </tr>
                         <tr>
                           <th>Total</th>
-                          <td >{{getSum('N') | number:'1.2-2'}}</td>
+                          <td>{{getSum('N') | number:'1.2-2'}}</td>
                           <td>{{getSum('n') | number:'1.2-2'}}</td>
                           <td>{{getSum('P') | number:'1.2-2'}}</td>
                           <td>{{getSum('p') | number:'1.2-2'}}</td>
@@ -955,6 +955,12 @@
                   </p-accordion>
                   <br>
                   <!-- <button class="btn btn-custom">ACTION?</button> -->
+                </div>
+              </div>
+              <div class="row" *ngIf="reportData">
+                <div class="col-md-12" *ngIf="reportData.ScheduleResponse">
+                  <button style="float:right;" class="btn btn-custom" (click)="captureScreen(reportData)">
+                    <i class="fa fa-download"></i> PDF</button>
                 </div>
               </div>
 

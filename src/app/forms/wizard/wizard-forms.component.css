@@ -149,6 +149,10 @@
     background-color: orange!important;
 }
 
+:host ::ng-deep aw-wizard-navigation-bar.horizontal.small ul.steps-indicator li.editing:after{
+    background-color: orange!important;
+}
+
 :host ::ng-deep aw-wizard-navigation-bar.horizontal ul.steps-indicator{
     margin-bottom: 1.5rem!important;
 }

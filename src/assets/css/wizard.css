@@ -285,8 +285,8 @@
 }
 
 .has-float-label .form-control:placeholder-shown:not(:focus)+* {
-  font-size: 100%!important;
-  opacity: .5;
+  /* font-size: 100%!important; */
+  opacity: 1;
   top: .9em!important;
 
   font-weight: 400;
@@ -294,7 +294,7 @@
   border: none;
     right: inherit;
     left: 10px;
-    font-style: italic;
+    /* font-style: italic; */
 }
 
 .has-float-label label, .has-float-label>span {
