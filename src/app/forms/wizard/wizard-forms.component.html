@@ -878,8 +878,8 @@
                           </tr>
                           <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
                             <td *ngIf="fer?.Concentration != 0">{{fer?.Name}}</td>
-                            <td *ngIf="fer?.Concentration != 0 && form2.averageYieldUnit != 'mt/Hectare'">{{fer?.Concentration | number:'1.2-2'}}</td>
-                            <td *ngIf="fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">{{fer?.Concentration*0.892179 | number:'1.2-2'}}</td>
+                            <td *ngIf="fer?.Concentration != 0 && form2.averageYieldUnit == 'mt/Hectare'">{{fer?.Concentration | number:'1.2-2'}}</td>
+                            <td *ngIf="fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">{{fer?.Concentration*0.892179 | number:'1.2-2'}}</td>
                             <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
                             <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
                             <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
@@ -899,8 +899,8 @@
                         <tbody *ngFor="let item of reportData?.ScheduleResponse?.stages">
                           <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
                             <td *ngIf="fer?.Concentration != 0">{{fer?.Name}}</td>
-                            <td *ngIf="fer?.Concentration != 0 && form2.averageYieldUnit != 'mt/Hectare'">{{fer?.Concentration | number:'1.2-2'}}</td>
-                            <td *ngIf="fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">{{fer?.Concentration*0.892179 | number:'1.2-2'}}</td>
+                            <td *ngIf="fer?.Concentration != 0 && form2.averageYieldUnit == 'mt/Hectare'">{{fer?.Concentration | number:'1.2-2'}}</td>
+                            <td *ngIf="fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre'">{{fer?.Concentration*0.892179 | number:'1.2-2'}}</td>
                             <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
                             <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
                             <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
@@ -930,14 +930,14 @@
                         </tr>
                         <tr *ngFor="let item of reportData?.ScheduleResponse?.stages">
                           <td>{{item?.Name}}</td>
-                          <td *ngIf="form2.averageYieldUnit != 'mt/Hectare'">{{item?.FertAddition?.N_Val ? (item?.FertAddition?.N_Val | number:'1.2-2') : 0 }}</td>
-                          <td *ngIf="form2.averageYieldUnit != 'ton/Acre'">{{item?.FertAddition?.N_Val*0.892179 ? (item?.FertAddition?.N_Val*0.892179 | number:'1.2-2') : 0 }}</td>
+                          <td *ngIf="form2.averageYieldUnit == 'mt/Hectare'">{{item?.FertAddition?.N_Val ? (item?.FertAddition?.N_Val | number:'1.2-2') : 0 }}</td>
+                          <td *ngIf="form2.averageYieldUnit == 'ton/Acre'">{{item?.FertAddition?.N_Val*0.892179 ? (item?.FertAddition?.N_Val*0.892179 | number:'1.2-2') : 0 }}</td>
                           <td>{{item?.FertAddition?.N_Val / item?.Duration | number:'1.2-2'}}</td>
-                          <td *ngIf="form2.averageYieldUnit != 'mt/Hectare'">{{item?.FertAddition?.P_Val ? (item?.FertAddition?.P_Val | number:'1.2-2' ) : 0 }}</td>
-                          <td *ngIf="form2.averageYieldUnit != 'ton/Acre'">{{item?.FertAddition?.P_Val*0.892179 ? (item?.FertAddition?.P_Val*0.892179 | number:'1.2-2' ) : 0 }}</td>
+                          <td *ngIf="form2.averageYieldUnit == 'mt/Hectare'">{{item?.FertAddition?.P_Val ? (item?.FertAddition?.P_Val | number:'1.2-2' ) : 0 }}</td>
+                          <td *ngIf="form2.averageYieldUnit == 'ton/Acre'">{{item?.FertAddition?.P_Val*0.892179 ? (item?.FertAddition?.P_Val*0.892179 | number:'1.2-2' ) : 0 }}</td>
                           <td>{{item?.FertAddition?.P_Val / item?.Duration | number:'1.2-2'}}</td>
-                          <td *ngIf="form2.averageYieldUnit != 'mt/Hectare'">{{item?.FertAddition?.K_Val ? (item?.FertAddition?.K_Val | number:'1.2-2') : 0 }}</td>
-                          <td *ngIf="form2.averageYieldUnit != 'ton/Acre'">{{item?.FertAddition?.K_Val*0.892179 ? (item?.FertAddition?.K_Val*0.892179 | number:'1.2-2') : 0 }}</td>
+                          <td *ngIf="form2.averageYieldUnit == 'mt/Hectare'">{{item?.FertAddition?.K_Val ? (item?.FertAddition?.K_Val | number:'1.2-2') : 0 }}</td>
+                          <td *ngIf="form2.averageYieldUnit == 'ton/Acre'">{{item?.FertAddition?.K_Val*0.892179 ? (item?.FertAddition?.K_Val*0.892179 | number:'1.2-2') : 0 }}</td>
                           <td>{{item?.FertAddition?.K_Val / item?.Duration | number:'1.2-2'}}</td>
                         </tr>
                         <tr>
