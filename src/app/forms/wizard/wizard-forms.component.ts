@@ -96,7 +96,7 @@ unitesData: any[] = [];
     constructor(private service: SoilService, private fb: FormBuilder, private route: ActivatedRoute,
         private router: Router, private messageService: MessageService, private translateService: TranslateService) {
         translateService.setDefaultLang('en')
-        
+
         this.stepIndex = 0;
         const url_string = window.location.href;
         const url = new URL(url_string);
@@ -147,6 +147,9 @@ unitesData: any[] = [];
             } else if (index == 'k') {
                 sum += Number(this.reportData.ScheduleResponse.stages[i].FertAddition != null ? this.reportData.ScheduleResponse.stages[i].FertAddition.K_Val : 0) / this.reportData.ScheduleResponse.stages[i].Duration;
             }
+        }
+        if (this.form2.averageYieldUnit == 'ton/Acre') {
+          sum = sum * 0.892179;
         }
         return sum;
     }
@@ -514,8 +517,9 @@ unitesData: any[] = [];
 
         this.SetLabel(x, y, 'Crop', doc, 1);
         this.SetColon(x, y, doc, 1);
-        if (this.form2 && this.form2.cropName)
+        if (this.form2 && this.form2.cropName) {
             this.SetValue(x, y, this.form2.cropName, doc, 1);
+        }
 
         this.SetLabel(x, y, 'Planting Date', doc, 2);
         this.SetColon(x, y, doc, 2);
@@ -554,8 +558,9 @@ unitesData: any[] = [];
 
         this.SetLabel(x, y, 'Yield Goal', doc, 1);
         this.SetColon(x, y, doc, 1);
-        if (this.form2 && this.form2.averageYield)
+        if (this.form2 && this.form2.averageYield) {
             this.SetValue(x, y, this.form2.averageYield, doc, 1);
+        }
 
         return y;
     }
@@ -958,5 +963,5 @@ unitesData: any[] = [];
         window.scrollTo(0, 0);
     }
 
-    
+
 }
