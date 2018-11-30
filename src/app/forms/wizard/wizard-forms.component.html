@@ -25,13 +25,16 @@
     </div>
     <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="firstPage">GET YOUR FERTILIZER PLAN</span></h1>
     <!--<h1 translate>Title</h1>-->
+    <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="currentStep==4 && reportData">Report is ready.</span></h1>
 
-    <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="reportData">Report is ready.</span></h1>
+    <!--<h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="reportData">Report is ready.</span></h1>-->
     <h1 class="content-header" class="htitle"><span *ngIf="isText">in under 15 minutes, for only $79</span> </h1>
     <p class="hstitle"><span *ngIf="isText"> {{tname}}
         <strong>{{tnameStrong}}</strong>
         <br> With more than 250 crops available, this is your gateway to precise and more successful farming!</span></p>
-    <span *ngIf="isStep5"> Ursula;'s text here.</span>
+    <span *ngIf="currentStep==2"> Text for step 2</span>
+    <span *ngIf="currentStep==3"> Text for step 3</span>
+
 
     <!-- <br>
       <button style="float:right;" class="btn btn-custom" (click)="captureScreen(reportData)">
@@ -343,7 +346,7 @@
                 </div>
               </form>
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 2" (stepEnter)="scrolltoTop(1)">
+            <aw-wizard-step stepTitle="Step 2" (stepEnter)="scrolltoTop(1); changeStep(2)">
               <form [formGroup]="step2Form" (ngSubmit)="step2()">
                 <div class="row">
                   <div class="col-md-12">
@@ -520,7 +523,7 @@
                 <button type="submit" class="btn-wiz btn" [disabled]="step2Form.invalid" awNextStep>NEXT</button>
               </form>
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 3" (stepEnter)="scrolltoTop(2)">
+            <aw-wizard-step stepTitle="Step 3" (stepEnter)="scrolltoTop(2); ; changeStep(3)">
               <form [formGroup]="step3Form" (ngSubmit)="step3()">
                 <div class="row">
                   <div class="col-md-12">
@@ -681,7 +684,7 @@
                 <button type="submit" class="btn-wiz btn" [disabled]="step3Form.invalid || isNutrient" awNextStep>NEXT</button>
               </form>
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 4" (stepEnter)="scrolltoTop(3)">
+            <aw-wizard-step stepTitle="Step 4" (stepEnter)="scrolltoTop(3); ; changeStep(3)">
               <div class="row">
                 <div class="col-md-12">
                   <br>
@@ -793,7 +796,7 @@
               </form>
               <!-- <button type="button" class="btn-wiz btn" awNextStep>GET REPORT</button> -->
             </aw-wizard-step>
-            <aw-wizard-step stepTitle="Step 5" (stepEnter)="scrolltoTop(4)">
+            <aw-wizard-step stepTitle="Step 5" (stepEnter)="scrolltoTop(4); ; changeStep(4)">
               <br>
               <div class="row" *ngIf="!reportData" style="margin:auto 0;">
                 <div class="col-md-12 text-center">
