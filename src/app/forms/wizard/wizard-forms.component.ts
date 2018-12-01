@@ -61,7 +61,11 @@ unitesData: any[] = [];
     form: FormGroup;
     convertData: any[] = [];
     reportData: any;
-    seasonSummarySorted: any;
+    seasonSummarySorted: {
+      fertilizer: any[],
+      concentrationUnit: any[],
+      amount: any[]
+    }
     allcrops: any[] = [];
     payUrl: any;
     isPay = false;
@@ -93,7 +97,9 @@ unitesData: any[] = [];
   defaultAverageYieldUnit = '';
   defaultSoilTexture = '';
   currentStep = 0;
-        private _emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  fertilizerList = [];
+  fertilizerSum = [];
+  private _emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     // reportData: any = JSON.parse('{"ScheduleResponse":{"AcidAlert":{"Alert":[]},"stages":[{"AcidAlert":{"Alert":[]},"N_FormsAlert":{"Alert":[]},"Cost":"0","Duration":"10","Recommendation":"Per 10","Id":1,"Name":"s1","FromDate":"2018-07-18T19:41:27","ToDate":"2018-07-27T19:41:27","Ratios":null,"IrrWaterEc":null,"EstimatedIrrWaterEc":null,"TargetValuesEC":null,"TargetValuesEc":null,"SourceWaterEc":null,"IsFeasible":"0","PhIsDisabled":null,"PhIsLow":null,"PhIsUnavailable":null,"PhGoesForTargetPh":null,"IrrWaterPh":null,"IrrWaterHCO3":null,"SelectedFertilizers":{"Fertilizer":[{"Id":8173,"FertilizerId":8173,"Name":"Consultant Fertilizer","Concentration":"0","AcidConcentration":"","ConcentrationUnit":"6","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":false,"Cost":0,"ElementsConcentrations":null}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"129.8343","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"0","K_Val":"394.2857","Ca_Val":"999.2727","Mg_Val":"569.0909","S_Val":null,"B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":null,"Accuracy":{"Name":null,"N_Val":"0%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"0%","K_Val":"0%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":"0%","Fe_Val":"0%","Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":"0%","HCO3_Val":"0%","CO3_Val":"0%","CL_Val":"0%","F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"FriendlyAlerts":{"Alert":[{"Id":92,"AlertId":92,"Message":"Current application of nutrients N, K, Ca, Mg is less than 80% of actual requirement.","Severity":15,"MessageSource":"N, K, Ca, Mg"}]},"IsActive":false,"AlternativeCompoundFertilizers":{"Fertilizer":[]}},{"AcidAlert":{"Alert":[]},"N_FormsAlert":{"Alert":[{"Id":312,"AlertId":312,"Message":"There might be volatilization of nitrogen.","Severity":0,"MessageSource":null}]},"Cost":"0.00","Duration":"30","Recommendation":"Per 30","Id":2,"Name":"s2","FromDate":"2018-07-28T19:41:27","ToDate":"2018-08-26T19:41:27","Ratios":" N-NO3 % =40      NO3:NH4 =1:1.50      N:P =1:2.00      N:K =1:3.00     ","IrrWaterEc":"0","EstimatedIrrWaterEc":"0","TargetValuesEC":"0","TargetValuesEc":"0","SourceWaterEc":"0","IsFeasible":"1","PhIsDisabled":"0","PhIsLow":"0","PhIsUnavailable":"0","PhGoesForTargetPh":"0","IrrWaterPh":"0","IrrWaterHCO3":"0","SelectedFertilizers":{"Fertilizer":[{"Id":8173,"FertilizerId":8173,"Name":"Consultant Fertilizer","Concentration":"729.35","AcidConcentration":"","ConcentrationUnit":"6","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":false,"Cost":0,"ElementsConcentrations":null}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"389.5028","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"72.93508","K_Val":"857.1429","Ca_Val":"1498.909","Mg_Val":"796.7272","S_Val":"0","B_Val":null,"Fe_Val":null,"Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":{"Id":"FertAddition","Name":"FertAddition","N_Val":"36.4675","NO3_Val":"14.587","NH4_Val":"21.8805","NH2_Val":"0","P_Val":"72.935","K_Val":"109.4025","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":"0"},"Accuracy":{"Name":null,"N_Val":"9%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"100%","K_Val":"13%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":null,"Fe_Val":null,"Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"FriendlyAlerts":{"Alert":[{"Id":92,"AlertId":92,"Message":"Current application of nutrients N, K, Ca, Mg is less than 80% of actual requirement.","Severity":15,"MessageSource":"N, K, Ca, Mg"}]},"IsActive":true,"AlternativeCompoundFertilizers":{"Fertilizer":[]}},{"AcidAlert":{"Alert":[]},"N_FormsAlert":{"Alert":[{"Id":312,"AlertId":312,"Message":"There might be volatilization of nitrogen.","Severity":0,"MessageSource":null}]},"Cost":"0.00","Duration":"40","Recommendation":"Per 40","Id":3,"Name":"s3","FromDate":"2018-08-27T19:41:27","ToDate":"2018-10-05T19:41:27","Ratios":" N-NO3 % =40      NO3:NH4 =1:1.50      N:P =1:2.00      N:K =1:3.00     ","IrrWaterEc":"0","EstimatedIrrWaterEc":"0","TargetValuesEC":"0","TargetValuesEc":"0","SourceWaterEc":"0","IsFeasible":"1","PhIsDisabled":"0","PhIsLow":"0","PhIsUnavailable":"0","PhGoesForTargetPh":"0","IrrWaterPh":"0","IrrWaterHCO3":"0","SelectedFertilizers":{"Fertilizer":[{"Id":8173,"FertilizerId":8173,"Name":"Consultant Fertilizer","Concentration":"1411.36","AcidConcentration":"","ConcentrationUnit":"6","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":false,"Cost":0,"ElementsConcentrations":null}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"519.337","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"141.1364","K_Val":"1028.571","Ca_Val":"1748.727","Mg_Val":"910.5455","S_Val":"0","B_Val":null,"Fe_Val":null,"Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":{"Id":"FertAddition","Name":"FertAddition","N_Val":"70.568","NO3_Val":"28.2272","NH4_Val":"42.3408","NH2_Val":"0","P_Val":"141.136","K_Val":"211.704","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":"0"},"Accuracy":{"Name":null,"N_Val":"14%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"100%","K_Val":"21%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":null,"Fe_Val":null,"Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"FriendlyAlerts":{"Alert":[{"Id":92,"AlertId":92,"Message":"Current application of nutrients N, K, Ca, Mg is less than 80% of actual requirement.","Severity":15,"MessageSource":"N, K, Ca, Mg"}]},"IsActive":true,"AlternativeCompoundFertilizers":{"Fertilizer":[]}}],"Success":true,"Message":null,"FertilizerScheduleId":0,"Status":1,"Result":true,"Errors":null,"ErrorNumber":null},"BaseDressingResponse":{"BaseDressingResult":{"N_Val":null,"NO3_Val":null,"NH2_Val":null,"NH4_Val":null,"P_Val":null,"K_Val":null,"Ca_Val":null,"Mg_Val":null,"S_Val":null,"B_Val":null,"Fe_Val":null,"Mn_Val":null,"Zn_Val":null,"Cu_Val":null,"Mo_Val":null,"Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"SelectedFertilizers":{"Fertilizer":[{"Id":11,"FertilizerId":11,"Name":"Potassium Nitrate","Concentration":"0","AcidConcentration":"","ConcentrationUnit":"2","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":true,"Cost":0,"ElementsConcentrations":{"N_Val":13,"NO3_Val":13,"NH2_Val":0,"NH4_Val":0,"P_Val":0,"K_Val":38,"Ca_Val":0,"Mg_Val":0,"S_Val":0,"B_Val":0,"Fe_Val":0,"Mn_Val":0,"Zn_Val":0,"Cu_Val":0,"Mo_Val":0,"Na_Val":0,"HCO3_Val":0,"CO3_Val":0,"CL_Val":0,"F_Val":0,"MicroElementsChelated":0}},{"Id":13,"FertilizerId":13,"Name":"Mono Potassium Phosphate (M.K.P)","Concentration":"428.5714","AcidConcentration":"","ConcentrationUnit":"2","IsLiquid":false,"Order":"2","IsLocked":false,"NotUsed":false,"IsSystemFert":true,"Cost":0,"ElementsConcentrations":{"N_Val":0,"NO3_Val":0,"NH2_Val":0,"NH4_Val":0,"P_Val":22.5,"K_Val":28,"Ca_Val":0,"Mg_Val":0,"S_Val":0,"B_Val":0,"Fe_Val":0,"Mn_Val":0,"Zn_Val":0,"Cu_Val":0,"Mo_Val":0,"Na_Val":0,"HCO3_Val":0,"CO3_Val":0,"CL_Val":0,"F_Val":0,"MicroElementsChelated":0}}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"577.0795","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"124.2","K_Val":"120","Ca_Val":null,"Mg_Val":null,"S_Val":"0","B_Val":null,"Fe_Val":null,"Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":{"Id":"FertAddition","Name":"FertAddition","N_Val":"0","NO3_Val":"0","NH4_Val":"0","NH2_Val":"0","P_Val":"96.42857","K_Val":"120","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":"0"},"ManureAddition":{"Id":null,"Name":null,"N_Val":"0","NO3_Val":"0","NH4_Val":"0","NH2_Val":"0","P_Val":"0","K_Val":"0","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":null},"Accuracy":{"Name":null,"N_Val":"0%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"78%","K_Val":"100%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":"0%","Fe_Val":"0%","Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":"0%","HCO3_Val":"0%","CO3_Val":"0%","CL_Val":"0%","F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"Percentage":{"Id":null,"Name":null,"N_Val":"50","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"40","K_Val":"5","Ca_Val":null,"Mg_Val":null,"S_Val":null,"B_Val":null,"Fe_Val":null,"Mn_Val":null,"Zn_Val":null,"Cu_Val":null,"Mo_Val":null,"Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"Success":true,"CEC":"15","SoilTypeId":"4","plotArea":"12","blockBS":true,"SoilDataExists":true,"Cost":0,"FriendlyAlerts":null},"Status":1,"Result":true,"Errors":null,"ErrorNumber":null}');
     constructor(private service: SoilService, private fb: FormBuilder, private route: ActivatedRoute,
         private router: Router, private messageService: MessageService, private translateService: TranslateService) {
@@ -132,9 +138,31 @@ unitesData: any[] = [];
         }
     }
     seasonSummarySort() {
-      for (let i = 0; i < this.reportData.Sheduleresponse.stages[0].SelectedFertilizers.Fertilizer.length; i++) {
+
+      for (let i = 0; i < this.reportData.ScheduleResponse.stages[0].SelectedFertilizers.Fertilizer.length; i++) {
+        this.fertilizerList[i] = this.reportData.ScheduleResponse.stages[0].SelectedFertilizers.Fertilizer[i].Name;
+        this.seasonSummarySorted.fertilizer.push(this.fertilizerList[i]);
+        this.seasonSummarySorted.concentrationUnit.push(this.reportData.ScheduleResponse.stages[0].SelectedFertilizers.Fertilizer[i].ConcentrationUnit);
+
 
       }
+
+      this.fertilizerSum = new Array(this.fertilizerList.length).fill(0);
+      for (let k = 0; k < this.fertilizerList.length; k++) {
+        for (let j = 0; j < this.reportData.ScheduleResponse.stages.length; j++) {
+          for (let i = 0; i < this.reportData.ScheduleResponse.stages[j].SelectedFertilizers.Fertilizer.length; i++) {
+            if (this.reportData.ScheduleResponse.stages[j].SelectedFertilizers.Fertilizer[i].Name == this.fertilizerList[k]  ) {
+              if (this.reportData.ScheduleResponse.stages[j].SelectedFertilizers.Fertilizer[i].Concentration != '') {
+                this.fertilizerSum[k] += Number(this.reportData.ScheduleResponse.stages[j].SelectedFertilizers.Fertilizer[i].Concentration);
+              }
+            }
+
+          }
+        }
+        this.seasonSummarySorted.amount.push(this.fertilizerSum[k])
+      }
+
+
     }
     getSum(index: string): number {
         let sum = 0;
@@ -164,6 +192,12 @@ unitesData: any[] = [];
         console.log(language)
       }
       ngOnInit() {
+      this.seasonSummarySorted = {
+        fertilizer:  [],
+        concentrationUnit: [],
+        amount: []
+
+      }
         this.service.getNutrients()
             .subscribe(data => {
                 this.nutrientsData = data;
@@ -431,6 +465,7 @@ unitesData: any[] = [];
 
                                 }
                                 this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Report Generated Successfully' });
+                                this.seasonSummarySort();
                                 this.isReportPage = false;
                             });
                     }, error => {

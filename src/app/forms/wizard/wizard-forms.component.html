@@ -894,7 +894,7 @@
                         </table>
                       </div>
                     </p-accordionTab>
-                    <p-accordionTab header="Season Summary - Fertilizers" [selected]="true">
+                   <!-- <p-accordionTab header="Season Summary - Fertilizers" [selected]="true">
                       <table class="table">
                         <tr>
                           <th>Fertilizer</th>
@@ -915,16 +915,38 @@
                           </tr>
                         </tbody>
                       </table>
+                    </p-accordionTab> -->
+                    <p-accordionTab header="Season Summary - Fertilizers" [selected]="true">
+                      <table class="table" >
+                        <tr>
+                          <th>Fertilizer</th>
+                          <th colspan="2" class="text-center">Quantity</th>
+                        </tr>
+                        <tbody >
+                        <tr *ngFor="let fer of seasonSummarySorted.fertilizer; index as i">
+                          <td *ngIf="seasonSummarySorted.amount[i] != 0 && fer != ''">{{fer}}</td>
+                          <td *ngIf="seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'mt/Hectare'">{{seasonSummarySorted.amount[i] | number:'1.2-2'}}</td>
+                          <td *ngIf="seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'ton/Acre' && seasonSummarySorted.concentrationUnit[i] != 4">{{seasonSummarySorted.amount[i]*0.892179 | number:'1.2-2'}}</td>
+                          <td *ngIf="seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit == 4">{{fer?.Concentration*0.106906 | number:'1.2-2'}}</td>
+                          <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 4 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
+                          <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 6 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
+                          <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 9 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
+                          <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 6 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'ton/Acre'">Lbs</td>
+                          <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 4 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'ton/Acre'">gal</td>
+                          <td *ngIf="seasonSummarySorted.concentrationUnit[i] != 6 && seasonSummarySorted.concentrationUnit[i] != 4 && seasonSummarySorted.concentrationUnit[i] != 9 && seasonSummarySorted.amount[i] != 0"></td>
+                        </tr>
+                        </tbody>
+                      </table>
                     </p-accordionTab>
                     <p-accordionTab header="Season Summary - NPK distribution" [selected]="true">
-                      <table class="table">
+                      <table class="table"  >
                         <tr>
                           <th></th>
                           <th colspan="2" class="text-center">N</th>
                           <th colspan="2" class="text-center">P</th>
                           <th colspan="2" class="text-center">K</th>
                         </tr>
-                        <tr>
+                        <tr >
                           <th>Stage name</th>
                           <th *ngIf="form2.averageYieldUnit == 'mt/Hectare'">kg/ha/stage</th>
                           <th *ngIf="form2.averageYieldUnit == 'ton/Acre'">lbs/ac/stage</th>
