@@ -23,10 +23,10 @@ import { TranslateService } from '@ngx-translate/core';
 export class WizardFormsComponent implements OnInit {
     // Language
 
-   // Alltherest
-   msgs: Message[] = [];
-   value = 0;
-unitesData: any[] = [];
+    // Alltherest
+    msgs: Message[] = [];
+    value = 0;
+    unitesData: any[] = [];
     extractionData: any[] = [];
     nutrientsData: any[] = [];
     cropNE: {
@@ -62,9 +62,9 @@ unitesData: any[] = [];
     convertData: any[] = [];
     reportData: any;
     seasonSummarySorted: {
-      fertilizer: any[],
-      concentrationUnit: any[],
-      amount: any[]
+        fertilizer: any[],
+        concentrationUnit: any[],
+        amount: any[]
     }
     allcrops: any[] = [];
     payUrl: any;
@@ -89,17 +89,17 @@ unitesData: any[] = [];
     finalYield: any;
     isNutrient = true;
     isDisableWizard = true;
-  isReportPage = false;
-  firstPage = true;
-  reportTitle = false;
-  language = 'es';
-  defaultUnit = '';
-  defaultAverageYieldUnit = '';
-  defaultSoilTexture = '';
-  currentStep = 0;
-  fertilizerList = [];
-  fertilizerSum = [];
-  private _emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    isReportPage = false;
+    firstPage = true;
+    reportTitle = false;
+    language = 'es';
+    defaultUnit = '';
+    defaultAverageYieldUnit = '';
+    defaultSoilTexture = '';
+    currentStep = 0;
+    fertilizerList = [];
+    fertilizerSum = [];
+    private _emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     // reportData: any = JSON.parse('{"ScheduleResponse":{"AcidAlert":{"Alert":[]},"stages":[{"AcidAlert":{"Alert":[]},"N_FormsAlert":{"Alert":[]},"Cost":"0","Duration":"10","Recommendation":"Per 10","Id":1,"Name":"s1","FromDate":"2018-07-18T19:41:27","ToDate":"2018-07-27T19:41:27","Ratios":null,"IrrWaterEc":null,"EstimatedIrrWaterEc":null,"TargetValuesEC":null,"TargetValuesEc":null,"SourceWaterEc":null,"IsFeasible":"0","PhIsDisabled":null,"PhIsLow":null,"PhIsUnavailable":null,"PhGoesForTargetPh":null,"IrrWaterPh":null,"IrrWaterHCO3":null,"SelectedFertilizers":{"Fertilizer":[{"Id":8173,"FertilizerId":8173,"Name":"Consultant Fertilizer","Concentration":"0","AcidConcentration":"","ConcentrationUnit":"6","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":false,"Cost":0,"ElementsConcentrations":null}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"129.8343","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"0","K_Val":"394.2857","Ca_Val":"999.2727","Mg_Val":"569.0909","S_Val":null,"B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":null,"Accuracy":{"Name":null,"N_Val":"0%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"0%","K_Val":"0%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":"0%","Fe_Val":"0%","Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":"0%","HCO3_Val":"0%","CO3_Val":"0%","CL_Val":"0%","F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"FriendlyAlerts":{"Alert":[{"Id":92,"AlertId":92,"Message":"Current application of nutrients N, K, Ca, Mg is less than 80% of actual requirement.","Severity":15,"MessageSource":"N, K, Ca, Mg"}]},"IsActive":false,"AlternativeCompoundFertilizers":{"Fertilizer":[]}},{"AcidAlert":{"Alert":[]},"N_FormsAlert":{"Alert":[{"Id":312,"AlertId":312,"Message":"There might be volatilization of nitrogen.","Severity":0,"MessageSource":null}]},"Cost":"0.00","Duration":"30","Recommendation":"Per 30","Id":2,"Name":"s2","FromDate":"2018-07-28T19:41:27","ToDate":"2018-08-26T19:41:27","Ratios":" N-NO3 % =40      NO3:NH4 =1:1.50      N:P =1:2.00      N:K =1:3.00     ","IrrWaterEc":"0","EstimatedIrrWaterEc":"0","TargetValuesEC":"0","TargetValuesEc":"0","SourceWaterEc":"0","IsFeasible":"1","PhIsDisabled":"0","PhIsLow":"0","PhIsUnavailable":"0","PhGoesForTargetPh":"0","IrrWaterPh":"0","IrrWaterHCO3":"0","SelectedFertilizers":{"Fertilizer":[{"Id":8173,"FertilizerId":8173,"Name":"Consultant Fertilizer","Concentration":"729.35","AcidConcentration":"","ConcentrationUnit":"6","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":false,"Cost":0,"ElementsConcentrations":null}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"389.5028","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"72.93508","K_Val":"857.1429","Ca_Val":"1498.909","Mg_Val":"796.7272","S_Val":"0","B_Val":null,"Fe_Val":null,"Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":{"Id":"FertAddition","Name":"FertAddition","N_Val":"36.4675","NO3_Val":"14.587","NH4_Val":"21.8805","NH2_Val":"0","P_Val":"72.935","K_Val":"109.4025","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":"0"},"Accuracy":{"Name":null,"N_Val":"9%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"100%","K_Val":"13%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":null,"Fe_Val":null,"Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"FriendlyAlerts":{"Alert":[{"Id":92,"AlertId":92,"Message":"Current application of nutrients N, K, Ca, Mg is less than 80% of actual requirement.","Severity":15,"MessageSource":"N, K, Ca, Mg"}]},"IsActive":true,"AlternativeCompoundFertilizers":{"Fertilizer":[]}},{"AcidAlert":{"Alert":[]},"N_FormsAlert":{"Alert":[{"Id":312,"AlertId":312,"Message":"There might be volatilization of nitrogen.","Severity":0,"MessageSource":null}]},"Cost":"0.00","Duration":"40","Recommendation":"Per 40","Id":3,"Name":"s3","FromDate":"2018-08-27T19:41:27","ToDate":"2018-10-05T19:41:27","Ratios":" N-NO3 % =40      NO3:NH4 =1:1.50      N:P =1:2.00      N:K =1:3.00     ","IrrWaterEc":"0","EstimatedIrrWaterEc":"0","TargetValuesEC":"0","TargetValuesEc":"0","SourceWaterEc":"0","IsFeasible":"1","PhIsDisabled":"0","PhIsLow":"0","PhIsUnavailable":"0","PhGoesForTargetPh":"0","IrrWaterPh":"0","IrrWaterHCO3":"0","SelectedFertilizers":{"Fertilizer":[{"Id":8173,"FertilizerId":8173,"Name":"Consultant Fertilizer","Concentration":"1411.36","AcidConcentration":"","ConcentrationUnit":"6","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":false,"Cost":0,"ElementsConcentrations":null}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"519.337","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"141.1364","K_Val":"1028.571","Ca_Val":"1748.727","Mg_Val":"910.5455","S_Val":"0","B_Val":null,"Fe_Val":null,"Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":{"Id":"FertAddition","Name":"FertAddition","N_Val":"70.568","NO3_Val":"28.2272","NH4_Val":"42.3408","NH2_Val":"0","P_Val":"141.136","K_Val":"211.704","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":"0"},"Accuracy":{"Name":null,"N_Val":"14%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"100%","K_Val":"21%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":null,"Fe_Val":null,"Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"FriendlyAlerts":{"Alert":[{"Id":92,"AlertId":92,"Message":"Current application of nutrients N, K, Ca, Mg is less than 80% of actual requirement.","Severity":15,"MessageSource":"N, K, Ca, Mg"}]},"IsActive":true,"AlternativeCompoundFertilizers":{"Fertilizer":[]}}],"Success":true,"Message":null,"FertilizerScheduleId":0,"Status":1,"Result":true,"Errors":null,"ErrorNumber":null},"BaseDressingResponse":{"BaseDressingResult":{"N_Val":null,"NO3_Val":null,"NH2_Val":null,"NH4_Val":null,"P_Val":null,"K_Val":null,"Ca_Val":null,"Mg_Val":null,"S_Val":null,"B_Val":null,"Fe_Val":null,"Mn_Val":null,"Zn_Val":null,"Cu_Val":null,"Mo_Val":null,"Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"SelectedFertilizers":{"Fertilizer":[{"Id":11,"FertilizerId":11,"Name":"Potassium Nitrate","Concentration":"0","AcidConcentration":"","ConcentrationUnit":"2","IsLiquid":false,"Order":"1","IsLocked":false,"NotUsed":false,"IsSystemFert":true,"Cost":0,"ElementsConcentrations":{"N_Val":13,"NO3_Val":13,"NH2_Val":0,"NH4_Val":0,"P_Val":0,"K_Val":38,"Ca_Val":0,"Mg_Val":0,"S_Val":0,"B_Val":0,"Fe_Val":0,"Mn_Val":0,"Zn_Val":0,"Cu_Val":0,"Mo_Val":0,"Na_Val":0,"HCO3_Val":0,"CO3_Val":0,"CL_Val":0,"F_Val":0,"MicroElementsChelated":0}},{"Id":13,"FertilizerId":13,"Name":"Mono Potassium Phosphate (M.K.P)","Concentration":"428.5714","AcidConcentration":"","ConcentrationUnit":"2","IsLiquid":false,"Order":"2","IsLocked":false,"NotUsed":false,"IsSystemFert":true,"Cost":0,"ElementsConcentrations":{"N_Val":0,"NO3_Val":0,"NH2_Val":0,"NH4_Val":0,"P_Val":22.5,"K_Val":28,"Ca_Val":0,"Mg_Val":0,"S_Val":0,"B_Val":0,"Fe_Val":0,"Mn_Val":0,"Zn_Val":0,"Cu_Val":0,"Mo_Val":0,"Na_Val":0,"HCO3_Val":0,"CO3_Val":0,"CL_Val":0,"F_Val":0,"MicroElementsChelated":0}}]},"NeededAddition":{"Id":null,"Name":null,"N_Val":"577.0795","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"124.2","K_Val":"120","Ca_Val":null,"Mg_Val":null,"S_Val":"0","B_Val":null,"Fe_Val":null,"Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"FertAddition":{"Id":"FertAddition","Name":"FertAddition","N_Val":"0","NO3_Val":"0","NH4_Val":"0","NH2_Val":"0","P_Val":"96.42857","K_Val":"120","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":"0"},"ManureAddition":{"Id":null,"Name":null,"N_Val":"0","NO3_Val":"0","NH4_Val":"0","NH2_Val":"0","P_Val":"0","K_Val":"0","Ca_Val":"0","Mg_Val":"0","S_Val":"0","B_Val":"0","Fe_Val":"0","Mn_Val":"0","Zn_Val":"0","Cu_Val":"0","Mo_Val":"0","Na_Val":"0","HCO3_Val":"0","CO3_Val":"0","CL_Val":"0","F_Val":null},"Accuracy":{"Name":null,"N_Val":"0%","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"78%","K_Val":"100%","Ca_Val":"0%","Mg_Val":"0%","S_Val":"0%","B_Val":"0%","Fe_Val":"0%","Mn_Val":"0%","Zn_Val":"0%","Cu_Val":"0%","Mo_Val":"0%","Na_Val":"0%","HCO3_Val":"0%","CO3_Val":"0%","CL_Val":"0%","F_Val":null,"Ca_Color":null,"Mg_Color":null,"S_Color":null,"Na_Color":null,"HCO3_Color":null},"Percentage":{"Id":null,"Name":null,"N_Val":"50","NO3_Val":null,"NH4_Val":null,"NH2_Val":null,"P_Val":"40","K_Val":"5","Ca_Val":null,"Mg_Val":null,"S_Val":null,"B_Val":null,"Fe_Val":null,"Mn_Val":null,"Zn_Val":null,"Cu_Val":null,"Mo_Val":null,"Na_Val":null,"HCO3_Val":null,"CO3_Val":null,"CL_Val":null,"F_Val":null},"Success":true,"CEC":"15","SoilTypeId":"4","plotArea":"12","blockBS":true,"SoilDataExists":true,"Cost":0,"FriendlyAlerts":null},"Status":1,"Result":true,"Errors":null,"ErrorNumber":null}');
     constructor(private service: SoilService, private fb: FormBuilder, private route: ActivatedRoute,
         private router: Router, private messageService: MessageService, private translateService: TranslateService) {
@@ -139,28 +139,28 @@ unitesData: any[] = [];
     }
     seasonSummarySort() {
 
-      for (let i = 0; i < this.reportData.ScheduleResponse.stages[0].SelectedFertilizers.Fertilizer.length; i++) {
-        this.fertilizerList[i] = this.reportData.ScheduleResponse.stages[0].SelectedFertilizers.Fertilizer[i].Name;
-        this.seasonSummarySorted.fertilizer.push(this.fertilizerList[i]);
-        this.seasonSummarySorted.concentrationUnit.push(this.reportData.ScheduleResponse.stages[0].SelectedFertilizers.Fertilizer[i].ConcentrationUnit);
+        for (let i = 0; i < this.reportData.ScheduleResponse.stages[0].SelectedFertilizers.Fertilizer.length; i++) {
+            this.fertilizerList[i] = this.reportData.ScheduleResponse.stages[0].SelectedFertilizers.Fertilizer[i].Name;
+            this.seasonSummarySorted.fertilizer.push(this.fertilizerList[i]);
+            this.seasonSummarySorted.concentrationUnit.push(this.reportData.ScheduleResponse.stages[0].SelectedFertilizers.Fertilizer[i].ConcentrationUnit);
 
 
-      }
-
-      this.fertilizerSum = new Array(this.fertilizerList.length).fill(0);
-      for (let k = 0; k < this.fertilizerList.length; k++) {
-        for (let j = 0; j < this.reportData.ScheduleResponse.stages.length; j++) {
-          for (let i = 0; i < this.reportData.ScheduleResponse.stages[j].SelectedFertilizers.Fertilizer.length; i++) {
-            if (this.reportData.ScheduleResponse.stages[j].SelectedFertilizers.Fertilizer[i].Name == this.fertilizerList[k]  ) {
-              if (this.reportData.ScheduleResponse.stages[j].SelectedFertilizers.Fertilizer[i].Concentration != '') {
-                this.fertilizerSum[k] += Number(this.reportData.ScheduleResponse.stages[j].SelectedFertilizers.Fertilizer[i].Concentration);
-              }
-            }
-
-          }
         }
-        this.seasonSummarySorted.amount.push(this.fertilizerSum[k])
-      }
+
+        this.fertilizerSum = new Array(this.fertilizerList.length).fill(0);
+        for (let k = 0; k < this.fertilizerList.length; k++) {
+            for (let j = 0; j < this.reportData.ScheduleResponse.stages.length; j++) {
+                for (let i = 0; i < this.reportData.ScheduleResponse.stages[j].SelectedFertilizers.Fertilizer.length; i++) {
+                    if (this.reportData.ScheduleResponse.stages[j].SelectedFertilizers.Fertilizer[i].Name == this.fertilizerList[k]) {
+                        if (this.reportData.ScheduleResponse.stages[j].SelectedFertilizers.Fertilizer[i].Concentration != '') {
+                            this.fertilizerSum[k] += Number(this.reportData.ScheduleResponse.stages[j].SelectedFertilizers.Fertilizer[i].Concentration);
+                        }
+                    }
+
+                }
+            }
+            this.seasonSummarySorted.amount.push(this.fertilizerSum[k])
+        }
 
 
     }
@@ -183,21 +183,46 @@ unitesData: any[] = [];
             }
         }
         if (this.form2.averageYieldUnit == 'ton/Acre') {
-          sum = sum * 0.892179;
+            sum = sum * 0.892179;
         }
         return sum;
     }
     switchLanguage(language: string) {
         this.translateService.use(language);
         console.log(language)
-      }
-      ngOnInit() {
-      this.seasonSummarySorted = {
-        fertilizer:  [],
-        concentrationUnit: [],
-        amount: []
+    }
 
-      }
+    // function for dynamic sorting
+    compareValues(key, keyinner = 'name', order = 'asc') {
+        return function (a, b) {
+            if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+                // property doesn't exist on either object
+                return 0;
+            }
+
+            const varA = (typeof a[key][keyinner] === 'string') ?
+                a[key][keyinner].toUpperCase() : a[key][keyinner];
+            const varB = (typeof b[key][keyinner] === 'string') ?
+                b[key][keyinner].toUpperCase() : b[key][keyinner];
+
+            let comparison = 0;
+            if (varA > varB) {
+                comparison = 1;
+            } else if (varA < varB) {
+                comparison = -1;
+            }
+            return (
+                (order === 'desc') ? (comparison * -1) : comparison
+            );
+        };
+    }
+    ngOnInit() {
+        this.seasonSummarySorted = {
+            fertilizer: [],
+            concentrationUnit: [],
+            amount: []
+
+        }
         this.service.getNutrients()
             .subscribe(data => {
                 this.nutrientsData = data;
@@ -213,9 +238,10 @@ unitesData: any[] = [];
                             }
                             this.cropNE = {
                                 type: this.type[i],
-                                nutrients: this.nutrientsData.filter(a => a.type == this.type[i]),
-                                extMethod: this.extractionData.filter(a => a.type == this.type[i])
+                                nutrients: this.nutrientsData.filter(a => a.type === this.type[i]),
+                                extMethod: this.extractionData.filter(a => a.type === this.type[i])
                             }
+                            this.cropNE.extMethod.sort(this.compareValues('value'));
                             this.alldata.push(this.cropNE);
                         }
                         // this.alldata = this.alldata.sort();
@@ -340,7 +366,7 @@ unitesData: any[] = [];
             nutrient: ['1', Validators.required],
             nutrientUnit: ['ppm', Validators.required],
             extMethod: ['1', Validators.required],
-            value: ['', ],
+            value: ['',],
         });
     }
 
@@ -360,14 +386,14 @@ unitesData: any[] = [];
                         if (data1) {
                             this.varietyData = data1.Varieties.Variety;
                             this.step2Form.controls['variety'].enable();
-                          this.step2Form.controls['variety'].setValue('');
-                          this.step2Form.controls['specifics'].enable();
+                            this.step2Form.controls['variety'].setValue('');
+                            this.step2Form.controls['specifics'].enable();
                             this.soilType = data1.Varieties.Variety[0].SoilTypes.SoilType;
                         }
                     });
             });
-            localStorage.setItem('cropid', JSON.stringify(this.cropId));
-        }
+        localStorage.setItem('cropid', JSON.stringify(this.cropId));
+    }
 
     changeText2(event) {
         this.soilType = [];
@@ -403,12 +429,12 @@ unitesData: any[] = [];
             // localStorage.removeItem("covert");
 
             for (let j = 0; j < fill.nutrients.length; j++) {
-                if (fill.nutrients[j].value.id == this.form3.nutrientData[i].nutrient) {
+                if (fill.nutrients[j].value.id === this.form3.nutrientData[i].nutrient) {
                     this.form3.nutrientData[i].nutrient = fill.nutrients[j].value.name;
                 }
             }
             for (let j = 0; j < fill.extMethod.length; j++) {
-                if (fill.extMethod[j].value.id == this.form3.nutrientData[i].extMethod) {
+                if (fill.extMethod[j].value.id === this.form3.nutrientData[i].extMethod) {
                     this.form3.nutrientData[i].extMethod = fill.extMethod[j].value.name;
                 }
             }
@@ -606,6 +632,94 @@ unitesData: any[] = [];
 
         return y;
     }
+
+
+    BuildForm3Summary(doc, y, stages) {
+        // Table 1
+
+        y = this.AddNewPageRequired(doc, y, 25, false);
+        y += 20;
+        doc.setFontSize(15);
+
+        doc.setTextColor(0, 153, 51);
+        doc.text(20, y, 'Soil Composition');
+
+        y += 3;
+        doc.line(25, y, 185, y);
+
+        y += 5;
+        doc.setFontSize(9);
+        doc.setTextColor(0, 153, 51);
+
+        doc.text(30, y, 'Soil Texture');
+        doc.text(70, y, '');
+        doc.text(110, y, 'Organic Matter');
+        doc.text(150, y, 'pH');
+
+        y += 3;
+        doc.line(25, y, 185, y);
+
+
+        y = this.AddNewPageRequired(doc, y, 8, true);
+        y += 5;
+        doc.setFontSize(8);
+        doc.setTextColor(0, 0, 0);
+
+        doc.text(30, y, this.form3.texture.toString());
+        doc.text(70, y, '');
+        doc.text(110, y, this.form3.organicMatter.toString() + ' %');
+        doc.text(150, y, this.form3.ph.toString());
+        y += 3;
+        doc.line(25, y, 185, y);
+
+
+        // Table 2
+
+        y = this.AddNewPageRequired(doc, y, 25, false);
+        y += 20;
+        doc.setFontSize(15);
+
+        doc.setTextColor(0, 153, 51);
+        doc.text(20, y, 'Soil Composition - Nutrient');
+
+        y += 3;
+        doc.line(25, y, 185, y);
+
+        y += 5;
+        doc.setFontSize(9);
+        doc.setTextColor(0, 153, 51);
+
+        doc.text(30, y, 'Nutrient');
+        doc.text(70, y, 'Unit');
+        doc.text(110, y, 'Extraction Method');
+        doc.text(155, y, 'Value');
+
+        y += 3;
+        doc.line(25, y, 185, y);
+
+
+        for (let i = 0; i < this.form3.nutrientData.length; i++) {
+
+            if (this.form3.nutrientData[i].value) {
+
+                y = this.AddNewPageRequired(doc, y, 8, true);
+                y += 5;
+                doc.setFontSize(8);
+                doc.setTextColor(0, 0, 0);
+
+                doc.text(30, y, this.alldata[i].nutrients.filter(x => x.value.id === 1)[0].value.name);
+                doc.text(70, y, this.form3.nutrientData[i].nutrientUnit.toString());
+                doc.text(110, y, this.alldata[i].extMethod.filter(x => x.value.id === 1)[0].value.name);
+                doc.text(158, y, this.form3.nutrientData[i].value.toString());
+                y += 3;
+                doc.line(25, y, 185, y);
+            }
+        }
+
+        return y;
+
+    }
+
 
     BuildNutrientSummary(doc, y, stages) {
         y = this.AddNewPageRequired(doc, y, 25, false);
@@ -880,10 +994,13 @@ unitesData: any[] = [];
         // Fill Data
         let y = this.BuildHeaderBlock(doc);
 
+        // Build Form 3
+        y = this.BuildForm3Summary(doc, y, stages);
 
 
-        // Build Nutrient Summary
         if (stages != null) {
+
+            // Build Nutrient Summary
             y = this.BuildNutrientSummary(doc, y, stages);
 
             // Build Estalishment
@@ -990,22 +1107,22 @@ unitesData: any[] = [];
         if (this.stepIndex !== 0) {
             this.isText = false;
             this.isStep5 = false;
-          this.isReportPage = false;
-          this.firstPage = true;
+            this.isReportPage = false;
+            this.firstPage = true;
 
         } else {
             this.isText = true;
-          this.isStep5 = false;
+            this.isStep5 = false;
 
         }
         if (this.stepIndex === 4) {
-          this.isReportPage = true;
-          this.firstPage = false;
+            this.isReportPage = true;
+            this.firstPage = false;
         }
         window.scrollTo(0, 0);
     }
     changeStep(stepnumber) {
-      this.currentStep = stepnumber;
+        this.currentStep = stepnumber;
     }
 
 
