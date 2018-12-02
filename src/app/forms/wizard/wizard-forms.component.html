@@ -942,7 +942,7 @@
                               | number:'1.2-2'}}</td>
                             <td *ngIf="seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'ton/Acre' && seasonSummarySorted.concentrationUnit[i] != 4">{{seasonSummarySorted.amount[i]*0.892179
                               | number:'1.2-2'}}</td>
-                            <td *ngIf="seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit == 4">{{fer?.Concentration*0.106906
+                            <td *ngIf="seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit == 4">{{seasonSummarySorted.amount[i]*0.106906
                               | number:'1.2-2'}}</td>
                             <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 4 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
                             <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 6 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
