@@ -334,8 +334,8 @@ export class WizardFormsComponent implements OnInit {
         }
 
         this.service.getUnites()
-            .subscribe(data => {
-                this.unitesData = data;
+            .subscribe(datas => {
+                this.unitesData = datas;
             })
 
         this.step5Form = new FormGroup({
@@ -763,17 +763,18 @@ export class WizardFormsComponent implements OnInit {
 
             for (let i = 0; i < stage.SelectedFertilizers.Fertilizer.length; i++) {
                 if (stage.SelectedFertilizers.Fertilizer[i].Concentration !== '') {
-
+                    const fert = stage.SelectedFertilizers.Fertilizer[i];
                     y = this.AddNewPageRequired(doc, y, 8, true);
                     y += 5;
                     doc.setFontSize(8);
                     doc.setTextColor(0, 0, 0);
 
-                    doc.text(30, y, stage.SelectedFertilizers.Fertilizer[i].Name);
+                    doc.text(30, y, fert.Name);
                     doc.text(70, y, '');
-                    doc.text(110, y, stage.SelectedFertilizers.Fertilizer[i].Concentration);
+                    const concent = this.GetConcentration(fert.ConcentrationUnit, fert.averageYieldUnit, fert.Concentration);
+                    doc.text(110, y, concent);
                     // tslint:disable-next-line:max-line-length
-                    const unit = this.GetUnit(stage.SelectedFertilizers.Fertilizer[i].ConcentrationUnit, stage.SelectedFertilizers.Fertilizer[i].averageYieldUnit)
+                    const unit = this.GetUnit(fert.ConcentrationUnit, fert.averageYieldUnit)
                     doc.text(150, y, unit);
                     y += 3;
                     doc.line(25, y, 185, y);
@@ -812,14 +813,16 @@ export class WizardFormsComponent implements OnInit {
 
             for (let i = 0; i < stage.SelectedFertilizers.Fertilizer.length; i++) {
                 if (stage.SelectedFertilizers.Fertilizer[i].Concentration !== '') {
+                    const fert = stage.SelectedFertilizers.Fertilizer[i];
                     y = this.AddNewPageRequired(doc, y, 8, true);
                     y += 5;
                     doc.setFontSize(8);
                     doc.setTextColor(0, 0, 0);
-                    doc.text(30, y, stage.SelectedFertilizers.Fertilizer[i].Name);
-                    doc.text(125, y, stage.SelectedFertilizers.Fertilizer[i].Concentration);
+                    doc.text(30, y, fert.Name);
+                    const concent = this.GetConcentration(fert.ConcentrationUnit, fert.averageYieldUnit, fert.Concentration);
+                    doc.text(125, y, concent);
                     // tslint:disable-next-line:max-line-length
-                    const unit = this.GetUnit(stage.SelectedFertilizers.Fertilizer[i].ConcentrationUnit, stage.SelectedFertilizers.Fertilizer[i].averageYieldUnit)
+                    const unit = this.GetUnit(fert.ConcentrationUnit, fert.averageYieldUnit)
                     doc.text(155, y, unit);
 
                     y += 3;
@@ -1030,6 +1033,18 @@ export class WizardFormsComponent implements OnInit {
         }
         // this.HitApiForData();
         return;
+    }
+
+    GetConcentration(concUnit, yieldUnit, concent) {
+        if (yieldUnit === 'mt/Hectare') {
+            return this.NumberToDecimalPlaces(concent, 2);
+        } else if (yieldUnit === 'ton/Acre') {
+            if (concUnit === 4) {
+                return this.NumberToDecimalPlaces(concent * 0.106906, 2);
+            } else {
+                return this.NumberToDecimalPlaces(concent * 0.892179, 2);
+            }
+        }
     }
 
     GetUnit(concUnit, averageYieldUnit) {
