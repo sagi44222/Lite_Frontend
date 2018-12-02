@@ -137,23 +137,24 @@ export class SoilService {
   }
   postSendEmail(payload) {
 
-    //const body = JSON.stringify({
+    // const body = JSON.stringify({
      // 'name': name,
-      //'email': email,
+      // 'email': email,
      // 'pdf': pdf
-    //})
-    //const body = JSON.stringify(payload);
+    // })
+    // const body = JSON.stringify(payload);
     let headers = new HttpHeaders();
     headers = headers.set('content-Type', 'application/json;charset=utf-8');
-    return Observable.create((observer) => {
-      return this._http.post(Urls.sendEmail, payload, { headers: headers })
-        .subscribe(data => {
-            observer.next(data);
-          },
-          err => {
-            console.error(err);
-          });
-    });
+    return this._http.post(Urls.sendEmail, payload, { headers: headers });
+    // return Observable.create((observer) => {
+    //   return this._http.post(Urls.sendEmail, payload, { headers: headers });
+    //     // .subscribe(data => {
+    //     //     observer.next(data);
+    //     //   },
+    //     //   err => {
+    //     //     console.error(err);
+    //     //   });
+    // });
   }
   signupSF(form1) {
     const body = JSON.stringify({

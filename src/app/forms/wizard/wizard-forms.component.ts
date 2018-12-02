@@ -1117,10 +1117,22 @@ export class WizardFormsComponent implements OnInit {
         console.log('Email should be sent using the API. Here is the object');
         this.captureScreen(stages, false);
         const payload = {};
-        payload['name'] = this.form1 ? this.form1.firstName + ' ' + this.form1.LastName : '';
-        payload['email'] = this.form1 ? this.form1.email + ' ' + this.form1.LastName : '';
+        payload['name'] = this.form1 ? this.form1.firstName + ' ' + this.form1.lastName : '';
+        payload['email'] = this.form1 ? this.form1.email : '';
         payload['pdf'] = this.pdf64Format;
+
+
+
         console.log(payload);
+
+        this.service.postSendEmail(payload).subscribe(
+            (result) => {
+                console.log('Hittem mail API with success');
+                console.log(result);
+            }, error => {
+                console.log('Hittem mail API with error');
+                console.log(error);
+            })
     }
 
     getBase64Image(img) {
