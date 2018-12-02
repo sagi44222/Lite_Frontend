@@ -3,7 +3,7 @@
 <script src="../../../../../../lite_frontend2/src/app/forms/forms.module.ts"></script>
 <p-growl [(value)]="msgs"></p-growl>
 
-<div style="height: 23px; background: #6f9c40;" >
+<div style="height: 23px; background: #6f9c40;">
   <!--
   <h1><span>
     <select class="form-control" (change)="switchLanguage($event.target.value)">
@@ -23,9 +23,11 @@
         </div>
       </a>
     </div>
-    <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="firstPage">GET YOUR FERTILIZER PLAN</span></h1>
+    <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="firstPage">GET YOUR
+        FERTILIZER PLAN</span></h1>
     <!--<h1 translate>Title</h1>-->
-    <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="currentStep==4 && reportData">Report is ready.</span></h1>
+    <h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="currentStep==4 && reportData">Report
+        is ready.</span></h1>
 
     <!--<h1 class="content-header" style="font-weight:700;color:#6f9c40;font-size: 3rem;"><span *ngIf="reportData">Report is ready.</span></h1>-->
     <h1 class="content-header" class="htitle"><span *ngIf="isText">in under 15 minutes, for only $79</span> </h1>
@@ -34,11 +36,10 @@
         <br> With more than 250 crops available, this is your gateway to precise and more successful farming!</span></p>
     <span *ngIf="currentStep==2"> Text for step 2</span>
     <span *ngIf="currentStep==3"> Text for step 3</span>
-
-
-    <!-- <br>
-      <button style="float:right;" class="btn btn-custom" (click)="captureScreen(reportData)">
-        <i class="fa fa-download"></i> PDF</button> -->
+    <!-- <button style="float:right;" class="btn btn-custom" (click)="captureScreen(null)">
+      <i class="fa fa-download"></i> PDF</button>
+    <button style="float:right;" class="btn btn-custom" (click)="SendEmail(null)">
+      <i class="fa fa-download"></i> Email</button> -->
   </div>
 </div>
 
@@ -325,10 +326,12 @@
                       </i>
                       The fertilizer plan provided will show you the amount of fertilizers needed for 1 ha/1ac.
 
-                      <a style="border-bottom: 1px solid;font-style: italic;" href="#">Here you can see an example fertilizer plan</a>.
+                      <a style="border-bottom: 1px solid;font-style: italic;" href="#">Here you can see an example
+                        fertilizer plan</a>.
                     </p>
                     <p class="bultext">
-                      <i class="fa fa-asterisk"> </i>                       Smart light deliver fertilizer plans for all soil-grown crops. If you are growing Hydropnics, check out our 
+                      <i class="fa fa-asterisk"> </i> Smart light deliver fertilizer plans for all soil-grown crops. If
+                      you are growing Hydropnics, check out our
                       <a style="border-bottom: 1px solid;font-style: italic;" href="#">Premium solution. </a>
 
                     </p>
@@ -340,7 +343,8 @@
                   </div>
                   <div class="col-md-10">
                     <p class="termscs" style="line-height: 1.1;">By clicking this button, you agree to SMART<br>Fertilizer's
-                      <a style="border-bottom: 1px solid;"> Privacy Policy</a> and <a style="border-bottom: 1px solid;">Terms of Use. </a>
+                      <a style="border-bottom: 1px solid;"> Privacy Policy</a> and <a style="border-bottom: 1px solid;">Terms
+                        of Use. </a>
                     </p>
                   </div>
                 </div>
@@ -455,12 +459,12 @@
                       <div class="col-md-2">
                         <div class="form-group">
                           <span class="form-group has-float-label">
-                              <select class="form-control custom-select minimal" name="plotSizeUnit"
-                              formControlName="plotSizeUnit" [(ngModel)]="defaultUnit">
-                        <option [value]="''">-- Select unit --</option>
-                        <option value="Hectare" >Hectare (ha)</option>
-                        <option value="Acre">Acre (ac)</option>
-                      </select>
+                            <select class="form-control custom-select minimal" name="plotSizeUnit" formControlName="plotSizeUnit"
+                              [(ngModel)]="defaultUnit">
+                              <option [value]="''">-- Select unit --</option>
+                              <option value="Hectare">Hectare (ha)</option>
+                              <option value="Acre">Acre (ac)</option>
+                            </select>
                             <span>Unit</span>
                             <small *ngIf="step2Form.controls['plotSizeUnit'].hasError('required') && step2Form.controls['plotSizeUnit'].touched"
                               class="font-small-1 text-danger">
@@ -487,8 +491,9 @@
                       <div class="col-md-2">
                         <div class="form-group">
                           <span class="form-group has-float-label">
-                              <select class="form-control custom-select minimal" name="averageYieldUnit" formControlName="averageYieldUnit" [(ngModel)]="defaultAverageYieldUnit">
-                                  <option [value]="''">-- Select unit --</option>
+                            <select class="form-control custom-select minimal" name="averageYieldUnit" formControlName="averageYieldUnit"
+                              [(ngModel)]="defaultAverageYieldUnit">
+                              <option [value]="''">-- Select unit --</option>
                               <option value="mt/Hectare" selected="selected">mt/ha</option>
                               <option value="ton/Acre">ton/ac</option>
                             </select>
@@ -509,8 +514,9 @@
                               </i>
                             </td>
                             <td>
-                                If this is your first year growing this crop and you have no average yield from previous years,
-                                please lookup average yields in your area.
+                              If this is your first year growing this crop and you have no average yield from previous
+                              years,
+                              please lookup average yields in your area.
                             </td>
                           </tr>
                         </table>
@@ -535,8 +541,9 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <span class="form-group has-float-label">
-                              <select class="form-control custom-select minimal" name="texture" formControlName="texture" [(ngModel)]="defaultSoilTexture">
-                                  <option [value]="''">-- Select soil texture --</option>
+                            <select class="form-control custom-select minimal" name="texture" formControlName="texture"
+                              [(ngModel)]="defaultSoilTexture">
+                              <option [value]="''">-- Select soil texture --</option>
                               <option value="Sandy" selected="selected">Sandy</option>
                               <option value="Sandy Loam">Sandy Loam</option>
                               <option value="Silt">Silt</option>
@@ -691,8 +698,9 @@
                   <h4 class="fgreen">Carefully check your details</h4>
                 </div>
                 <div class="col-md-12">
-                    <p style="color:#647163;">Please take a moment to check the data you entered. Once you click "Get Report", SMART Lite will use this data set to create your fertilizer plan.
-                      </p>
+                  <p style="color:#647163;">Please take a moment to check the data you entered. Once you click "Get
+                    Report", SMART Lite will use this data set to create your fertilizer plan.
+                  </p>
                 </div>
                 <div class="col-md-12">
                   <div class="row">
@@ -805,10 +813,12 @@
                 </div>
               </div>
               <div class="row" *ngIf="reportData">
-                  <div class="col-md-12" *ngIf="reportData.ScheduleResponse" >
-                      <button style="float:right;" class="btn btn-custom" (click)="captureScreen(reportData)">
-                        <i class="fa fa-download"></i> PDF</button>
-                    </div>
+                <div class="col-md-12" *ngIf="reportData.ScheduleResponse">
+                  <button style="float:right;" class="btn btn-custom" (click)="captureScreen(reportData)">
+                    <i class="fa fa-download"></i> PDF</button>
+                  <button style="float:right;" class="btn btn-custom" (click)="SendEmail(reportData)">
+                    <i class="fa fa-download"></i> Email</button>
+                </div>
 
               </div>
               <div class="row" *ngIf="reportData" #contentToConvert id="contentToConvert">
@@ -881,9 +891,12 @@
                           </tr>
                           <tr *ngFor="let fer of item?.SelectedFertilizers.Fertilizer">
                             <td *ngIf="fer?.Concentration != 0">{{fer?.Name}}</td>
-                            <td *ngIf="fer?.Concentration != 0 && form2.averageYieldUnit == 'mt/Hectare'">{{fer?.Concentration | number:'1.2-2'}}</td>
-                            <td *ngIf="fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit != 4">{{fer?.Concentration*0.892179 | number:'1.2-2'}}</td>
-                            <td *ngIf="fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit == 4">{{fer?.Concentration*0.106906 | number:'1.2-2'}}</td>
+                            <td *ngIf="fer?.Concentration != 0 && form2.averageYieldUnit == 'mt/Hectare'">{{fer?.Concentration
+                              | number:'1.2-2'}}</td>
+                            <td *ngIf="fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit != 4">{{fer?.Concentration*0.892179
+                              | number:'1.2-2'}}</td>
+                            <td *ngIf="fer?.Concentration != 0 && form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit == 4">{{fer?.Concentration*0.106906
+                              | number:'1.2-2'}}</td>
                             <td *ngIf="fer?.ConcentrationUnit == 4 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
                             <td *ngIf="fer?.ConcentrationUnit == 6 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
                             <td *ngIf="fer?.ConcentrationUnit == 9 && fer?.Concentration != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
@@ -894,7 +907,7 @@
                         </table>
                       </div>
                     </p-accordionTab>
-                   <!-- <p-accordionTab header="Season Summary - Fertilizers" [selected]="true">
+                    <!-- <p-accordionTab header="Season Summary - Fertilizers" [selected]="true">
                       <table class="table">
                         <tr>
                           <th>Fertilizer</th>
@@ -917,36 +930,39 @@
                       </table>
                     </p-accordionTab> -->
                     <p-accordionTab header="Season Summary - Fertilizers" [selected]="true">
-                      <table class="table" >
+                      <table class="table">
                         <tr>
                           <th>Fertilizer</th>
                           <th colspan="2" class="text-center">Quantity</th>
                         </tr>
-                        <tbody >
-                        <tr *ngFor="let fer of seasonSummarySorted.fertilizer; index as i">
-                          <td *ngIf="seasonSummarySorted.amount[i] != 0 && fer != ''">{{fer}}</td>
-                          <td *ngIf="seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'mt/Hectare'">{{seasonSummarySorted.amount[i] | number:'1.2-2'}}</td>
-                          <td *ngIf="seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'ton/Acre' && seasonSummarySorted.concentrationUnit[i] != 4">{{seasonSummarySorted.amount[i]*0.892179 | number:'1.2-2'}}</td>
-                          <td *ngIf="seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit == 4">{{fer?.Concentration*0.106906 | number:'1.2-2'}}</td>
-                          <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 4 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
-                          <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 6 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
-                          <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 9 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
-                          <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 6 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'ton/Acre'">Lbs</td>
-                          <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 4 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'ton/Acre'">gal</td>
-                          <td *ngIf="seasonSummarySorted.concentrationUnit[i] != 6 && seasonSummarySorted.concentrationUnit[i] != 4 && seasonSummarySorted.concentrationUnit[i] != 9 && seasonSummarySorted.amount[i] != 0"></td>
-                        </tr>
+                        <tbody>
+                          <tr *ngFor="let fer of seasonSummarySorted.fertilizer; index as i">
+                            <td *ngIf="seasonSummarySorted.amount[i] != 0 && fer != ''">{{fer}}</td>
+                            <td *ngIf="seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'mt/Hectare'">{{seasonSummarySorted.amount[i]
+                              | number:'1.2-2'}}</td>
+                            <td *ngIf="seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'ton/Acre' && seasonSummarySorted.concentrationUnit[i] != 4">{{seasonSummarySorted.amount[i]*0.892179
+                              | number:'1.2-2'}}</td>
+                            <td *ngIf="seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit == 4">{{fer?.Concentration*0.106906
+                              | number:'1.2-2'}}</td>
+                            <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 4 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit != 'ton/Acre'">liter</td>
+                            <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 6 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit != 'ton/Acre'">Kg</td>
+                            <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 9 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit != 'ton/Acre'">lbs</td>
+                            <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 6 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'ton/Acre'">Lbs</td>
+                            <td *ngIf="seasonSummarySorted.concentrationUnit[i] == 4 && seasonSummarySorted.amount[i] != 0 && form2.averageYieldUnit == 'ton/Acre'">gal</td>
+                            <td *ngIf="seasonSummarySorted.concentrationUnit[i] != 6 && seasonSummarySorted.concentrationUnit[i] != 4 && seasonSummarySorted.concentrationUnit[i] != 9 && seasonSummarySorted.amount[i] != 0"></td>
+                          </tr>
                         </tbody>
                       </table>
                     </p-accordionTab>
                     <p-accordionTab header="Season Summary - NPK distribution" [selected]="true">
-                      <table class="table"  >
+                      <table class="table">
                         <tr>
                           <th></th>
                           <th colspan="2" class="text-center">N</th>
                           <th colspan="2" class="text-center">P</th>
                           <th colspan="2" class="text-center">K</th>
                         </tr>
-                        <tr >
+                        <tr>
                           <th>Stage name</th>
                           <th *ngIf="form2.averageYieldUnit == 'mt/Hectare'">kg/ha/stage</th>
                           <th *ngIf="form2.averageYieldUnit == 'ton/Acre'">lbs/ac/stage</th>
@@ -963,25 +979,34 @@
                         </tr>
                         <tr *ngFor="let item of reportData?.ScheduleResponse?.stages">
                           <td>{{item?.Name}}</td>
-                          <td *ngIf="form2.averageYieldUnit == 'mt/Hectare'">{{item?.FertAddition?.N_Val ? (item?.FertAddition?.N_Val | number:'1.2-2') : 0 }}</td>
-                          <td *ngIf="form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit != 4">{{item?.FertAddition?.N_Val*0.892179 ? (item?.FertAddition?.N_Val*0.892179 | number:'1.2-2') : 0 }}</td>
-                          <td *ngIf="form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit == 4">{{item?.FertAddition?.N_Val*0.106906 ? (item?.FertAddition?.N_Val*0.106906 | number:'1.2-2') : 0 }}</td>
+                          <td *ngIf="form2.averageYieldUnit == 'mt/Hectare'">{{item?.FertAddition?.N_Val ?
+                            (item?.FertAddition?.N_Val | number:'1.2-2') : 0 }}</td>
+                          <td *ngIf="form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit != 4">{{item?.FertAddition?.N_Val*0.892179
+                            ? (item?.FertAddition?.N_Val*0.892179 | number:'1.2-2') : 0 }}</td>
+                          <td *ngIf="form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit == 4">{{item?.FertAddition?.N_Val*0.106906
+                            ? (item?.FertAddition?.N_Val*0.106906 | number:'1.2-2') : 0 }}</td>
 
                           <td>{{item?.FertAddition?.N_Val / item?.Duration | number:'1.2-2'}}</td>
-                          <td *ngIf="form2.averageYieldUnit == 'mt/Hectare'">{{item?.FertAddition?.P_Val ? (item?.FertAddition?.P_Val | number:'1.2-2' ) : 0 }}</td>
-                          <td *ngIf="form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit != 4">{{item?.FertAddition?.P_Val*0.892179 ? (item?.FertAddition?.P_Val*0.892179 | number:'1.2-2' ) : 0 }}</td>
-                          <td *ngIf="form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit == 4">{{item?.FertAddition?.P_Val*0.106906 ? (item?.FertAddition?.P_Val*0.106906 | number:'1.2-2' ) : 0 }}</td>
+                          <td *ngIf="form2.averageYieldUnit == 'mt/Hectare'">{{item?.FertAddition?.P_Val ?
+                            (item?.FertAddition?.P_Val | number:'1.2-2' ) : 0 }}</td>
+                          <td *ngIf="form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit != 4">{{item?.FertAddition?.P_Val*0.892179
+                            ? (item?.FertAddition?.P_Val*0.892179 | number:'1.2-2' ) : 0 }}</td>
+                          <td *ngIf="form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit == 4">{{item?.FertAddition?.P_Val*0.106906
+                            ? (item?.FertAddition?.P_Val*0.106906 | number:'1.2-2' ) : 0 }}</td>
 
                           <td>{{item?.FertAddition?.P_Val / item?.Duration | number:'1.2-2'}}</td>
-                          <td *ngIf="form2.averageYieldUnit == 'mt/Hectare' ">{{item?.FertAddition?.K_Val ? (item?.FertAddition?.K_Val | number:'1.2-2') : 0 }}</td>
-                          <td *ngIf="form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit != 4">{{item?.FertAddition?.K_Val*0.892179 ? (item?.FertAddition?.K_Val*0.892179 | number:'1.2-2') : 0 }}</td>
-                          <td *ngIf="form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit == 4">{{item?.FertAddition?.K_Val*0.106906 ? (item?.FertAddition?.K_Val*0.106906 | number:'1.2-2') : 0 }}</td>
+                          <td *ngIf="form2.averageYieldUnit == 'mt/Hectare' ">{{item?.FertAddition?.K_Val ?
+                            (item?.FertAddition?.K_Val | number:'1.2-2') : 0 }}</td>
+                          <td *ngIf="form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit != 4">{{item?.FertAddition?.K_Val*0.892179
+                            ? (item?.FertAddition?.K_Val*0.892179 | number:'1.2-2') : 0 }}</td>
+                          <td *ngIf="form2.averageYieldUnit == 'ton/Acre' && fer?.ConcentrationUnit == 4">{{item?.FertAddition?.K_Val*0.106906
+                            ? (item?.FertAddition?.K_Val*0.106906 | number:'1.2-2') : 0 }}</td>
 
                           <td>{{item?.FertAddition?.K_Val / item?.Duration | number:'1.2-2'}}</td>
                         </tr>
                         <tr>
                           <th>Total</th>
-                        <!--  <td *ngIf="form2.averageYieldUnit == 'mt/Hectare' ">{{getSum('N') | number:'1.2-2'}}</td>
+                          <!--  <td *ngIf="form2.averageYieldUnit == 'mt/Hectare' ">{{getSum('N') | number:'1.2-2'}}</td>
                           <td *ngIf="form2.averageYieldUnit == 'ton/Acre' ">{{getSum('N')*0.892179 | number:'1.2-2'}}</td>
 
                           <td *ngIf="form2.averageYieldUnit == 'mt/Hectare' ">{{getSum('n') | number:'1.2-2'}}</td>
@@ -1018,6 +1043,8 @@
                 <div class="col-md-12" *ngIf="reportData.ScheduleResponse">
                   <button style="float:right;" class="btn btn-custom" (click)="captureScreen(reportData)">
                     <i class="fa fa-download"></i> PDF</button>
+                  <button style="float:right;" class="btn btn-custom" (click)="SendEmail(reportData)">
+                    <i class="fa fa-download"></i> Email</button>
                 </div>
               </div>
 
