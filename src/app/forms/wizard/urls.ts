@@ -15,4 +15,5 @@ export class Urls {
   static recommandation = Urls.base + 'recommandation/';
   static signup = Urls.base + 'signup/';
   static updatecustomer = Urls.base + 'updatecustomer/';
+  static sendEmail = Urls.base + 'email/';
 }
