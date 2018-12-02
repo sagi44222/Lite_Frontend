@@ -809,28 +809,29 @@ export class WizardFormsComponent implements OnInit {
 
         y += 3;
         doc.line(25, y, 185, y);
-        for (let iCntr = 0; iCntr < stages.length; iCntr++) {
-            const stage = stages[iCntr];
+        // for (let iCntr = 0; iCntr < stages.length; iCntr++) {
+        //     const stage = stages[iCntr];
 
-            for (let i = 0; i < stage.SelectedFertilizers.Fertilizer.length; i++) {
-                if (stage.SelectedFertilizers.Fertilizer[i].Concentration !== '') {
-                    const fert = stage.SelectedFertilizers.Fertilizer[i];
-                    y = this.AddNewPageRequired(doc, y, 8, true);
-                    y += 5;
-                    doc.setFontSize(8);
-                    doc.setTextColor(0, 0, 0);
-                    doc.text(30, y, fert.Name);
-                    const concent = this.GetConcentration(fert.ConcentrationUnit, this.form2.averageYieldUnit, fert.Concentration);
-                    doc.text(125, y, concent);
-                    // tslint:disable-next-line:max-line-length
-                    const unit = this.GetUnit(fert.ConcentrationUnit, this.form2.averageYieldUnit)
-                    doc.text(155, y, unit);
+        for (let i = 0; i < this.seasonSummarySorted.fertilizer.length; i++) {
+            if (this.seasonSummarySorted.amount[i] !== 0) {
+                const fert = this.seasonSummarySorted.fertilizer[i];
+                y = this.AddNewPageRequired(doc, y, 8, true);
+                y += 5;
+                doc.setFontSize(8);
+                doc.setTextColor(0, 0, 0);
+                doc.text(30, y, fert);
+                // tslint:disable-next-line:max-line-length
+                const concent = this.GetConcentration(this.seasonSummarySorted.concentrationUnit[i], this.form2.averageYieldUnit, this.seasonSummarySorted.amount[i]);
+                doc.text(125, y, concent);
+                // tslint:disable-next-line:max-line-length
+                const unit = this.GetUnit(this.seasonSummarySorted.concentrationUnit[i], this.form2.averageYieldUnit)
+                doc.text(155, y, unit);
 
-                    y += 3;
-                    doc.line(25, y, 185, y);
-                }
+                y += 3;
+                doc.line(25, y, 185, y);
             }
         }
+        // }
         return y;
     }
 
