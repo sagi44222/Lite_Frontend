@@ -144,6 +144,7 @@ export class SoilService {
     // })
     // const body = JSON.stringify(payload);
     let headers = new HttpHeaders();
+    Urls.sendEmail = 'http://localhost:3000/api/email';
     headers = headers.set('content-Type', 'application/json;charset=utf-8');
     return this._http.post(Urls.sendEmail, payload, { headers: headers });
     // return Observable.create((observer) => {
