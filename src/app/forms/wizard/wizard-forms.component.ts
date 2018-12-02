@@ -775,7 +775,7 @@ export class WizardFormsComponent implements OnInit {
                     const concent = this.GetConcentration(fert.ConcentrationUnit, this.form2.averageYieldUnit, fert.Concentration);
                     doc.text(110, y, concent);
                     // tslint:disable-next-line:max-line-length
-                    const unit = this.GetUnit(fert.ConcentrationUnit, fert.averageYieldUnit)
+                    const unit = this.GetUnit(fert.ConcentrationUnit, this.form2.averageYieldUnit)
                     doc.text(150, y, unit);
                     y += 3;
                     doc.line(25, y, 185, y);
@@ -823,7 +823,7 @@ export class WizardFormsComponent implements OnInit {
                     const concent = this.GetConcentration(fert.ConcentrationUnit, this.form2.averageYieldUnit, fert.Concentration);
                     doc.text(125, y, concent);
                     // tslint:disable-next-line:max-line-length
-                    const unit = this.GetUnit(fert.ConcentrationUnit, fert.averageYieldUnit)
+                    const unit = this.GetUnit(fert.ConcentrationUnit, this.form2.averageYieldUnit)
                     doc.text(155, y, unit);
 
                     y += 3;
