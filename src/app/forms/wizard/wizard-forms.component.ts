@@ -772,7 +772,7 @@ export class WizardFormsComponent implements OnInit {
 
                     doc.text(30, y, fert.Name);
                     doc.text(70, y, '');
-                    const concent = this.GetConcentration(fert.ConcentrationUnit, fert.averageYieldUnit, fert.Concentration);
+                    const concent = this.GetConcentration(fert.ConcentrationUnit, this.form2.averageYieldUnit, fert.Concentration);
                     doc.text(110, y, concent);
                     // tslint:disable-next-line:max-line-length
                     const unit = this.GetUnit(fert.ConcentrationUnit, fert.averageYieldUnit)
@@ -820,7 +820,7 @@ export class WizardFormsComponent implements OnInit {
                     doc.setFontSize(8);
                     doc.setTextColor(0, 0, 0);
                     doc.text(30, y, fert.Name);
-                    const concent = this.GetConcentration(fert.ConcentrationUnit, fert.averageYieldUnit, fert.Concentration);
+                    const concent = this.GetConcentration(fert.ConcentrationUnit, this.form2.averageYieldUnit, fert.Concentration);
                     doc.text(125, y, concent);
                     // tslint:disable-next-line:max-line-length
                     const unit = this.GetUnit(fert.ConcentrationUnit, fert.averageYieldUnit)
@@ -1041,14 +1041,15 @@ export class WizardFormsComponent implements OnInit {
 
     GetConcentration(concUnit, yieldUnit, concent) {
         if (yieldUnit === 'mt/Hectare') {
-            return this.NumberToDecimalPlaces(concent, 2);
-        } else if (yieldUnit === 'ton/Acre') {
+            return this.NumberToDecimalPlaces(concent, 2).toString();
+        } else {
             if (concUnit === 4) {
-                return this.NumberToDecimalPlaces(concent * 0.106906, 2);
+                return this.NumberToDecimalPlaces(concent * 0.106906, 2).toString();
             } else {
-                return this.NumberToDecimalPlaces(concent * 0.892179, 2);
+                return this.NumberToDecimalPlaces(concent * 0.892179, 2).toString();
             }
         }
+        return '';
     }
 
     GetUnit(concUnit, averageYieldUnit) {
