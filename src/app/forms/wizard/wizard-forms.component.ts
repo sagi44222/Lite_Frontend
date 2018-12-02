@@ -930,7 +930,7 @@ export class WizardFormsComponent implements OnInit {
     }
 
     NumberToDecimalPlaces(numbertoChange: number, dec) {
-        return parseFloat(Math.round((numbertoChange * 100) / 100).toFixed(dec));
+        return ((numbertoChange * 100) / 100).toFixed(dec);
     }
 
     AddNewPageRequired(doc, y, rowRequiredHeight, flagforline = false) {
