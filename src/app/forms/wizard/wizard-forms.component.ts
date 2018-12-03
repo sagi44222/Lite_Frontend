@@ -12,6 +12,7 @@ const data: any = require('./crops.json');
 import * as jspdf from 'jspdf';
 import * as html2canvas from 'html2canvas';
 import { TranslateService } from '@ngx-translate/core';
+import {isUndefined} from 'util';
 
 @Component({
     selector: 'app-wizard-forms',
@@ -242,7 +243,7 @@ export class WizardFormsComponent implements OnInit {
                                 nutrients: this.nutrientsData.filter(a => a.type === this.type[i]),
                                 extMethod: this.extractionData.filter(a => a.type === this.type[i])
                             }
-                            this.cropNE.extMethod.sort(this.compareValues('value'));
+                            //this.cropNE.extMethod.sort(this.compareValues('value'));
                             this.alldata.push(this.cropNE);
                         }
                         // this.alldata = this.alldata.sort();
@@ -426,16 +427,16 @@ export class WizardFormsComponent implements OnInit {
         this.convertData = [];
         this.isConvert = true;
         for (let i = 0; i < this.form3.nutrientData.length; i++) {
-            const fill = this.alldata[i];
+            let fill = this.alldata[i];
             // localStorage.removeItem("covert");
 
             for (let j = 0; j < fill.nutrients.length; j++) {
-                if (fill.nutrients[j].value.id === this.form3.nutrientData[i].nutrient) {
+                if (fill.nutrients[j].value.id == this.form3.nutrientData[i].nutrient) {
                     this.form3.nutrientData[i].nutrient = fill.nutrients[j].value.name;
                 }
             }
             for (let j = 0; j < fill.extMethod.length; j++) {
-                if (fill.extMethod[j].value.id === this.form3.nutrientData[i].extMethod) {
+                if (fill.extMethod[j].value.id == this.form3.nutrientData[i].extMethod) {
                     this.form3.nutrientData[i].extMethod = fill.extMethod[j].value.name;
                 }
             }
@@ -451,14 +452,14 @@ export class WizardFormsComponent implements OnInit {
                     }
                     this.convertData.push(data);
                     this.convertFinal.push(nur);
-                    localStorage.setItem('convertFinal', JSON.stringify(this.convertFinal));
-                    localStorage.setItem('convert', JSON.stringify(this.convertData));
+                    localStorage.setItem("convertFinal", JSON.stringify(this.convertFinal));
+                    localStorage.setItem("convert", JSON.stringify(this.convertData));
                 });
             if ((this.form3.nutrientData.length - 1) == i) {
                 this.isConvert = false;
             }
         }
-        localStorage.setItem('form3', JSON.stringify(this.form3));
+        localStorage.setItem("form3", JSON.stringify(this.form3));
     }
 
     getReport() {
@@ -554,8 +555,8 @@ export class WizardFormsComponent implements OnInit {
     }
 
     SetLabel(x, y, text, doc, column = 0) {
-        const columnCounter = 60;
-        doc.setTextColor(0, 153, 51);
+        const columnCounter = 58;
+        doc.setTextColor(136, 168, 101);
         doc.setFontSize(8);
         doc.text(x + column * columnCounter, y, text.toString() + ' :');
     }
@@ -571,7 +572,7 @@ export class WizardFormsComponent implements OnInit {
     SetValue(x, y, text, doc, column = 0) {
         const counter = x + 28;
         const columnCounter = 60;
-        doc.setTextColor(0, 0, 0);
+        doc.setTextColor(42, 74, 37);
         doc.setFontSize(8);
         doc.text(counter + column * columnCounter, y, text.toString());
     }
@@ -580,47 +581,53 @@ export class WizardFormsComponent implements OnInit {
         const x = 20;
         let y = 55;
 
-        this.SetLabel(x, y, 'Program', doc, 0);
+        this.SetLabel(x, y, 'Name', doc, 0);
         this.SetColon(x, y, doc, 0);
-        this.SetValue(x, y, '', doc, 0);
-
+        if (this.form1) {
+        this.SetValue(x, y, this.form1.firstName + ' ' + this.form1.lastName, doc, 0);
+        }
         this.SetLabel(x, y, 'Crop', doc, 1);
         this.SetColon(x, y, doc, 1);
         if (this.form2 && this.form2.cropName) {
             this.SetValue(x, y, this.form2.cropName, doc, 1);
         }
 
-        this.SetLabel(x, y, 'Planting Date', doc, 2);
+        this.SetLabel(x, y, 'Country', doc, 2);
         this.SetColon(x, y, doc, 2);
-        this.SetValue(x, y, '', doc, 2);
+        if (this.form1.country) {
+          this.SetValue(x, y, this.form1.country, doc, 2);
+        }
+        y += 11;
+        if (this.form2) {
+          this.SetLabel(x, y, 'Variety', doc, 0);
+          this.SetColon(x, y, doc, 0);
+            this.SetValue(x, y, this.form2.variety, doc, 0);
 
+          this.SetLabel(x, y, 'Specifics', doc, 1);
+          this.SetColon(x, y, doc, 1);
+
+            this.SetValue(x, y, this.form2.specifics, doc, 1);
+
+          //this.SetLabel(x, y, 'Application Method', doc, 2);
+          // this.SetColon(x, y, doc, 2);
+          //this.SetValue(x, y, '', doc, 2);
+
+          y += 11;
+
+          this.SetLabel(x, y, 'Plot size', doc, 0);
+          this.SetColon(x, y, doc, 0);
+
+            this.SetValue(x, y, this.form2.plotSize.toString() + ' ' + this.form2.plotSizeUnit, doc, 0);
+
+          this.SetLabel(x, y, 'Average yield', doc, 1);
+          this.SetColon(x, y, doc, 1);
+
+            this.SetValue(x, y, this.form2.averageYield.toString() + ' ' + this.form2.averageYieldUnit, doc, 1);
+
+        }
         y += 11;
 
-        this.SetLabel(x, y, 'Farm', doc, 0);
-        this.SetColon(x, y, doc, 0);
-        this.SetValue(x, y, '', doc, 0);
-
-        this.SetLabel(x, y, 'Variety', doc, 1);
-        this.SetColon(x, y, doc, 1);
-        this.SetValue(x, y, '', doc, 1);
-
-        this.SetLabel(x, y, 'Application Method', doc, 2);
-        this.SetColon(x, y, doc, 2);
-        this.SetValue(x, y, '', doc, 2);
-
-        y += 11;
-
-        this.SetLabel(x, y, 'Field', doc, 0);
-        this.SetColon(x, y, doc, 0);
-        this.SetValue(x, y, '', doc, 0);
-
-        this.SetLabel(x, y, 'Growing Method', doc, 1);
-        this.SetColon(x, y, doc, 1);
-        this.SetValue(x, y, '', doc, 1);
-
-        y += 11;
-
-
+/*
         this.SetLabel(x, y, 'Field Area', doc, 0);
         this.SetColon(x, y, doc, 0);
         this.SetValue(x, y, '', doc, 0);
@@ -630,7 +637,7 @@ export class WizardFormsComponent implements OnInit {
         if (this.form2 && this.form2.averageYield) {
             this.SetValue(x, y, this.form2.averageYield, doc, 1);
         }
-
+*/
         return y;
     }
 
@@ -906,7 +913,7 @@ export class WizardFormsComponent implements OnInit {
         // Add Total
         y = this.AddNewPageRequired(doc, y, 8, true);
 
-        doc.setFillColor(0, 153, 51);
+        doc.setFillColor(159, 195, 97);
         doc.rect(25, y, 160, 8, 'F');
         doc.line(25, y, 185, y);
         // doc.line(0, 95, 210, 95);
@@ -914,7 +921,8 @@ export class WizardFormsComponent implements OnInit {
         y += 5;
         doc.setFontSize(8);
         doc.setTextColor(0, 0, 0);
-        doc.text(30, y, 'Total');
+      doc.setFontType('bold');
+      doc.text(30, y, 'Total');
         doc.text(90, y, this.NumberToDecimalPlaces(this.getSum('N'), 2).toString());
         doc.text(105, y, this.NumberToDecimalPlaces(this.getSum('n'), 2).toString());
 
@@ -978,11 +986,11 @@ export class WizardFormsComponent implements OnInit {
 
         // Header Section
         doc.setFontSize(20);
-        doc.setTextColor(0, 153, 51);
+        doc.setTextColor(111, 156, 64);
         doc.text(20, 40, 'Fertilizer Schedule');
 
         doc.setFontSize(12);
-        doc.setTextColor(0, 153, 51);
+        doc.setTextColor(111, 156, 64);
         doc.text(140, 40, new Date().toLocaleDateString());
 
         // Header Ends
@@ -990,7 +998,7 @@ export class WizardFormsComponent implements OnInit {
 
         // Draw Rectangle
 
-        doc.setFillColor(220, 220, 220);
+        doc.setFillColor(247, 247, 247);
         doc.rect(0, 45, 210, 50, 'F');
         doc.line(0, 45, 210, 45);
         doc.line(0, 95, 210, 95);
